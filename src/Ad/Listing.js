@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { dummyAds } from "./../Shared/Data";
 import { GdprPopup } from "./../Shared/GdprPopup";
-// console.log(Data);
+import Header from "./../Shared/Header";
 
 const Listing = () => {
   return (
     <>
-      <GdprPopup />
+      <Header />
       <h1>Listing</h1>
       {dummyAds.map((ad) => (
         <div>
@@ -18,10 +18,11 @@ const Listing = () => {
           <p> {ad.adDesc} </p>
           <p> {ad.prodId} </p>
           <p> {ad.email} </p>
-          <p> {ad.town} </p>
+          <p> {ad.location.town} </p>
           <p> {ad.adTitle} </p>
         </div>
       ))}
+      <GdprPopup />
     </>
   );
 };

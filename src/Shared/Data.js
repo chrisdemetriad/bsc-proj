@@ -4,9 +4,11 @@ export const dummyAds = [
     prodId: 3434,
     adTitle: "Bla bla",
     adDesc: "Bla bla bla bla bla",
-    town: "London",
-    latitude: "0.798989",
-    longitude: "1.232",
+    location: {
+      town: "London",
+      latitude: "0.798989",
+      longitude: "1.232",
+    },
     poster: {
       name: "John Doe",
       phone: "07950442200",
@@ -23,9 +25,11 @@ export const dummyAds = [
     prodId: 3434,
     adTitle: "Bla bla",
     adDesc: "Bla bla bla bla bla",
-    town: "London",
-    latitude: "0.798989",
-    longitude: "1.232",
+    location: {
+      town: "London",
+      latitude: "0.798989",
+      longitude: "1.232",
+    },
     poster: {
       name: "Tom Who",
       phone: "07950442200",
@@ -42,9 +46,11 @@ export const dummyAds = [
     prodId: 3434,
     adTitle: "Bla bla",
     adDesc: "Bla bla bla bla bla",
-    town: "London",
-    latitude: "0.798989",
-    longitude: "1.232",
+    location: {
+      town: "London",
+      latitude: "0.798989",
+      longitude: "1.232",
+    },
     poster: {
       name: "Why Where",
       phone: "07950442200",
@@ -61,9 +67,11 @@ export const dummyAds = [
     prodId: 3434,
     adTitle: "Bla bla",
     adDesc: "Bla bla bla bla bla",
-    town: "London",
-    latitude: "0.798989",
-    longitude: "1.232",
+    location: {
+      town: "London",
+      latitude: "0.798989",
+      longitude: "1.232",
+    },
     poster: {
       name: "Ben Hill",
       phone: "07950442200",
@@ -80,9 +88,11 @@ export const dummyAds = [
     prodId: 3434,
     adTitle: "Bla bla",
     adDesc: "Bla bla bla bla bla",
-    town: "London",
-    latitude: "0.798989",
-    longitude: "1.232",
+    location: {
+      town: "London",
+      latitude: "0.798989",
+      longitude: "1.232",
+    },
     poster: {
       name: "Fly John",
       phone: "07950442200",

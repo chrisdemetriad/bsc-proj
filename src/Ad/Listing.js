@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { dummyAds } from "./../Shared/Data";
+import { GdprPopup } from "./../Shared/GdprPopup";
 // console.log(Data);
 
 const Listing = () => {
   return (
     <>
+      <GdprPopup />
       <h1>Listing</h1>
       {dummyAds.map((ad) => (
         <div>

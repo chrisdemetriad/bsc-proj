@@ -9,8 +9,11 @@ const Listing = () => {
       <h1>Listing</h1>
       {dummyAds.map((ad) => (
         <div>
-          <p> {ad.name} </p>
-          <p> {ad.bodyText} </p>
+          <Link to={ad.id}>{ad.poster.name}</Link>
+          <img
+            src={"http://lorempixel.com/400/200/fashion/" + ad.poster.name}
+          />
+          <p> {ad.adDesc} </p>
           <p> {ad.prodId} </p>
           <p> {ad.email} </p>
           <p> {ad.town} </p>

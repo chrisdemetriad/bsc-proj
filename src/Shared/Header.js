@@ -3,15 +3,15 @@ import Search from "./../Shared/Search";
 import Nav from "./../Shared/Nav";
 
 const Header = () => {
-  return (
-    <>
-      <div>
-        <img src="#" />
-        <Search />
-        <Nav />
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div>
+				<img src="#" />
+				<Search />
+				<Nav />
+			</div>
+		</>
+	);
 };
 
 export default Header;

@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import React from 'react';
+import {Link, Navigate} from 'react-router-dom';
 
 const Home = () => {
-  return <Navigate to="/adverts" />;
+  return <h1>Home</h1>;
 };
 
 export default Home;

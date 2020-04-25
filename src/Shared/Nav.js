@@ -4,9 +4,9 @@ const Nav = () => {
   return (
     <>
       <div>
-        <button>One</button>
-        <button>Two</button>
-        <button>Three</button>
+        <button>Sell now</button>
+        <button>Sign up</button>
+        <button>Sign in</button>
       </div>
     </>
   );

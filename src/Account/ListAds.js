@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import {Routes, Route, Link} from 'react-router-dom';
 const ListAds = () => {
   return (
     <div>
@@ -9,7 +9,7 @@ const ListAds = () => {
         <Link to="settings">Settings</Link>
       </nav>
       <hr />
-      <Outlet />
+
     </div>
   );
 };

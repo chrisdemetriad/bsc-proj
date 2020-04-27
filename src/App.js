@@ -11,53 +11,31 @@ const Ad = lazy(() => import("./Ad/Ad"));
 const Home = lazy(() => import("./Home"));
 const CookiePolicy = lazy(() => import("./Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
+const Nav = lazy(() => import("./Shared/Nav"));
 
 function App() {
 	let loggedIn = true;
 	return (
 		<Suspense fallback={<div>Loading... </div>}>
 			<Router>
-				<Suspense fallback={<h1>Loading...</h1>}></Suspense>
-				<div>
-					<strong>THIS IS THE ROOT COMPONENT</strong>
-					<div>
-						<NavLink activeClassName="active" to="/">
-							Home
-						</NavLink>
-						<NavLink activeClassName="active" to="/account">
-							My account
-						</NavLink>
-						<NavLink activeClassName="active" to="/account/adverts">
-							My adverts
-						</NavLink>
-						<NavLink activeClassName="active" to="/sign-in">
-							Sign in
-						</NavLink>
-						<NavLink activeClassName="active" to="/sign-up">
-							Sign up
-						</NavLink>
-						<NavLink activeClassName="active" to="/sign-up">
-							{loggedIn ? "Logged in" : "Not logged in"}
-						</NavLink>
-					</div>
+				<Nav />
 
-					<Switch>
-						<Route component={Listing} path="/adverts" />
-						<Route component={Ad} path="/adverts/:id" />
-						<Route component={Settings} path="/account" />
-						<Route component={ListAds} path="/account/adverts" />
-						<Route component={SignIn} path="/sign-in" />
-						<Route component={SignUp} path="/sign-up" />
+				<Switch>
+					<Route component={Ad} path="/adverts/:id" />
+					<Route component={Listing} path="/adverts" />
 
-						<Route component={CookiePolicy} path="/cookies" />
-						<Route component={PrivacyPolicy} path="/privacy-policy" />
+					<Route component={Settings} path="/account" />
+					<Route component={ListAds} path="/account/adverts" />
+					<Route component={SignIn} path="/sign-in" />
+					<Route component={SignUp} path="/sign-up" />
 
-						<Route component={Home} path="/">
-							{loggedIn ? <Redirect to="/adverts" /> : <Home />}
-							<Redirect to="/adverts" />
-						</Route>
-					</Switch>
-				</div>
+					<Route component={CookiePolicy} path="/cookies" />
+					<Route component={PrivacyPolicy} path="/privacy-policy" />
+
+					<Route component={Home} path="/">
+						{loggedIn ? <Redirect to="/adverts" /> : <Home />}
+					</Route>
+				</Switch>
 			</Router>
 		</Suspense>
 	);

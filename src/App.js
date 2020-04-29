@@ -1,11 +1,14 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route, Link, NavLink, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 
 const Settings = lazy(() => import("./Account/Settings"));
 const ListAds = lazy(() => import("./Account/ListAds"));
-const EditAds = lazy(() => import("./Account/EditAds"));
-const SignIn = lazy(() => import("./Auth/Signin"));
-const SignUp = lazy(() => import("./Auth/Signup"));
+// const EditAds = lazy(() => import("./Account/EditAds"));
+const Login = lazy(() => import("./Auth/Login"));
+const Signup = lazy(() => import("./Auth/Signup"));
 const Listing = lazy(() => import("./Ad/Listing"));
 const Ad = lazy(() => import("./Ad/Ad"));
 const Home = lazy(() => import("./Home"));
@@ -14,30 +17,42 @@ const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
 const Nav = lazy(() => import("./Shared/Nav"));
 
 function App() {
-	let loggedIn = true;
+	// let loggedIn = true;
 	return (
-		<Suspense fallback={<div>Loading... </div>}>
-			<Router>
-				<Nav />
+		<AuthProvider>
+			<Suspense fallback={<div>Loading... </div>}>
+				<BrowserRouter>
+					<Nav />
 
-				<Switch>
-					<Route component={Ad} path="/adverts/:id" />
-					<Route component={Listing} path="/adverts" />
+					<Switch>
+						{/* <PrivateRoute exact path="/" component={Home} /> */}
 
-					<Route component={Settings} path="/account" />
-					<Route component={ListAds} path="/account/adverts" />
-					<Route component={SignIn} path="/sign-in" />
-					<Route component={SignUp} path="/sign-up" />
+						<PrivateRoute exact path="/adverts/:id" component={Ad} />
+						<PrivateRoute exact path="/adverts" component={Listing} />
+						<PrivateRoute exact path="/account" component={Settings} />
+						<PrivateRoute exact path="/account/adverts" component={ListAds} />
 
-					<Route component={CookiePolicy} path="/cookies" />
-					<Route component={PrivacyPolicy} path="/privacy-policy" />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/signup" component={Signup} />
 
-					<Route component={Home} path="/">
-						{loggedIn ? <Redirect to="/adverts" /> : <Home />}
-					</Route>
-				</Switch>
-			</Router>
-		</Suspense>
+						{/* <Route component={Ad} path="/adverts/:id" />
+						<Route component={Listing} path="/adverts" /> */}
+
+						<Route component={Settings} path="/account" />
+						<Route component={ListAds} path="/account/adverts" />
+						{/* <Route exact component={Login} path="/login" />
+						<Route exact component={Signup} path="/signup" /> */}
+
+						<Route component={CookiePolicy} path="/cookies" />
+						<Route component={PrivacyPolicy} path="/privacy-policy" />
+
+						<Route component={Home} path="/" />
+						{/* {loggedIn ? <Redirect to="/adverts" /> : <Home />}
+						</Route> */}
+					</Switch>
+				</BrowserRouter>
+			</Suspense>
+		</AuthProvider>
 	);
 
 	//     <Router>

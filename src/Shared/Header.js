@@ -6,7 +6,7 @@ const Header = () => {
 	return (
 		<>
 			<div>
-				<img src="#" />
+				{/* <img src="#" alt/> */}
 				<Search />
 				<Nav />
 			</div>

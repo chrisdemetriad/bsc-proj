@@ -15,7 +15,7 @@ const Listing = () => {
 						<Link to={"/adverts/" + ad.id} data={dummyAds}>
 							{ad.poster.name} - {ad.id}
 						</Link>
-						<img src={"http://lorempixel.com/400/200/fashion/" + ad.poster.name} />
+						<img src={"http://lorempixel.com/400/200/fashion/" + ad.poster.name} alt="img" />
 						<p> {ad.id} </p>
 						<p> {ad.adDesc} </p>
 						<p> {ad.prodId} </p>

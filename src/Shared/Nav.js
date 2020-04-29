@@ -14,10 +14,10 @@ const Nav = () => {
 			<NavLink activeClassName="active" to="/account/adverts">
 				My adverts
 			</NavLink>
-			<NavLink activeClassName="active" to="/sign-in">
-				Sign in
+			<NavLink activeClassName="active" to="/login">
+				Log in
 			</NavLink>
-			<NavLink activeClassName="active" to="/sign-up">
+			<NavLink activeClassName="active" to="/signup">
 				Sign up
 			</NavLink>
 			<NavLink activeClassName="active" to="/sign-up">

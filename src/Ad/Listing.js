@@ -7,7 +7,6 @@ import Header from "./../Shared/Header";
 const Listing = () => {
 	return (
 		<>
-			<Header />
 			<h1>Listing</h1>
 			{dummyAds.length > 0 ? (
 				dummyAds.map((ad) => (

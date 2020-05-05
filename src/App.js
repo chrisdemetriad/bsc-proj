@@ -15,14 +15,14 @@ const Home = lazy(() => import("./Home"));
 const CookiePolicy = lazy(() => import("./Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
 const PostAdvert = lazy(() => import("./PostAdvert"));
-const Nav = lazy(() => import("./Shared/Nav"));
+const Header = lazy(() => import("./Shared/Header"));
 
 function App() {
 	return (
 		<AuthProvider>
 			<Suspense fallback={<div>Loading... </div>}>
 				<BrowserRouter>
-					<Nav />
+					<Header />
 
 					<Switch>
 						{/* <PrivateRoute exact path="/" component={Home} /> */}

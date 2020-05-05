@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink, useLocation, Redirect } from "react-router-dom";
 import { AuthContext } from "../Auth";
+import app from "../.base";
 
 const Nav = () => {
 	let location = useLocation();
@@ -100,6 +101,8 @@ const Nav = () => {
 				Home
 			</NavLink>
  */}
+
+			{currentUser && <button onClick={() => app.auth().signOut()}>Sign out</button>}
 		</>
 	);
 };

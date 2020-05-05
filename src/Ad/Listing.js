@@ -12,7 +12,7 @@ const Listing = () => {
 			{dummyAds.length > 0 ? (
 				dummyAds.map((ad) => (
 					<div key={ad.id}>
-						<Link to={"/adverts/" + ad.id} data={dummyAds}>
+						<Link to={"/advert/" + ad.id} data="nice">
 							{ad.poster.name} - {ad.id}
 						</Link>
 						<img src={"http://lorempixel.com/400/200/fashion/" + ad.poster.name} alt="img" />

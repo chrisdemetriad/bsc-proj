@@ -5,10 +5,11 @@ const ListAds = () => {
 	return (
 		<div>
 			<h1>My account</h1>
-			<nav>
-				<Link to="settings">Settings</Link>
-			</nav>
-			<hr />
+			<h2>My adverts</h2>
+			<ul>
+				<li>Ad 1</li>
+				<li>Ad 2</li>
+			</ul>
 		</div>
 	);
 };

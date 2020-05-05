@@ -14,10 +14,10 @@ const Ad = lazy(() => import("./Ad/Ad"));
 const Home = lazy(() => import("./Home"));
 const CookiePolicy = lazy(() => import("./Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
+const PostAdvert = lazy(() => import("./PostAdvert"));
 const Nav = lazy(() => import("./Shared/Nav"));
 
 function App() {
-	// let loggedIn = true;
 	return (
 		<AuthProvider>
 			<Suspense fallback={<div>Loading... </div>}>
@@ -26,22 +26,16 @@ function App() {
 
 					<Switch>
 						{/* <PrivateRoute exact path="/" component={Home} /> */}
-
-						<PrivateRoute exact path="/adverts/:id" component={Ad} />
 						<PrivateRoute exact path="/adverts" component={Listing} />
-						<PrivateRoute exact path="/account" component={Settings} />
-						<PrivateRoute exact path="/account/adverts" component={ListAds} />
+						<PrivateRoute exact path="/adverts/:id" component={Ad} />
 
+						<PrivateRoute exact path="/account" component={ListAds} />
+						<PrivateRoute exact path="/account/settings" component={Settings} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/signup" component={Signup} />
 
-						{/* <Route component={Ad} path="/adverts/:id" />
-						<Route component={Listing} path="/adverts" /> */}
-
-						<Route component={Settings} path="/account" />
-						<Route component={ListAds} path="/account/adverts" />
-						{/* <Route exact component={Login} path="/login" />
-						<Route exact component={Signup} path="/signup" /> */}
+						<PrivateRoute exact path="/post-advert" component={PostAdvert} />
+						<Route exact path="/signup" component={Signup} />
 
 						<Route component={CookiePolicy} path="/cookies" />
 						<Route component={PrivacyPolicy} path="/privacy-policy" />

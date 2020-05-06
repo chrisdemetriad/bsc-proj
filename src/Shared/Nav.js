@@ -79,7 +79,7 @@ const Nav = () => {
 								</NavLink>
 							</>
 						);
-					case "/advert/*":
+					case "/advert":
 						return (
 							<>
 								<NavLink activeClassName="active" to="/post-advert">
@@ -94,7 +94,7 @@ const Nav = () => {
 							</>
 						);
 					default:
-						return "switch default case ";
+						return;
 				}
 			})()}
 			{/* <NavLink activeClassName="active" to="/">

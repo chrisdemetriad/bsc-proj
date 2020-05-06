@@ -26,8 +26,8 @@ function App() {
 
 					<Switch>
 						{/* <PrivateRoute exact path="/" component={Home} /> */}
+						<PrivateRoute exact path="/advert/:id" component={Ad} />
 						<PrivateRoute exact path="/adverts" component={Listing} />
-						<PrivateRoute exact path="/adverts/:id" component={Ad} />
 
 						<PrivateRoute exact path="/account" component={ListAds} />
 						<PrivateRoute exact path="/account/settings" component={Settings} />

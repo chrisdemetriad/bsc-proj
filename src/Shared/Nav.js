@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink, useLocation, Redirect } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import app from "../.base";
 
@@ -51,6 +51,9 @@ const Nav = () => {
 								)}
 								{currentUser && (
 									<>
+										<NavLink activeClassName="active" to="/Post-Ad">
+											Add Post
+										</NavLink>
 										<NavLink activeClassName="active" to="/post-advert">
 											Post advert
 										</NavLink>

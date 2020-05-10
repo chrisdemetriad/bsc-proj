@@ -1,26 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { dummyAds } from "./../Shared/Data";
 import { GdprPopup } from "./../Shared/GdprPopup";
-import Header from "./../Shared/Header";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
 
-const Listing = () => {
+
+const Listing = (props) => {
+	const [adList,setAdList] = useState([])
+
+	useEffect(()=>{
+		getData()
+	},[])
+	async function getData(){
+		const snapshot = await firebase.firestore().collection('adverts').get()
+		// const snapshot = await firebase.collection('adverts').get()
+		const values = snapshot.docs.map(doc =>{
+		  const data = doc.data();
+		  return ({ docId: doc.id, ...data });
+		});
+		console.log(values)
+		setAdList(values)
+	}
 	return (
 		<>
+
 			<h1>Listing</h1>
-			{dummyAds.length > 0 ? (
-				dummyAds.map((ad) => (
-					<div key={ad.id}>
-						<Link to={"/advert/" + ad.id} data="nice">
-							{ad.poster.name} - {ad.id}
+			{adList.length > 0 ? (
+				adList.map((ad) => (
+					<div key={ad.docId}>
+						<Link to={"/advert/" + ad.docId} data="nice">
+						{ad.title}
 						</Link>
-						<img src={"http://lorempixel.com/400/200/fashion/" + ad.poster.name} alt="img" />
-						<p> {ad.id} </p>
-						<p> {ad.adDesc} </p>
-						<p> {ad.prodId} </p>
-						<p> {ad.email} </p>
-						<p> {ad.location.town} </p>
-						<p> {ad.adTitle} </p>
+						<p> {ad.description} </p>
+						<p> {ad.type} </p>
+						<p> {ad.category} </p>
+						<p> {ad.price} </p>
 					</div>
 				))
 			) : (

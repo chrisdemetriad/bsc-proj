@@ -6,7 +6,8 @@ const Home = () => {
 	const { currentUser } = useContext(AuthContext);
 	return (
 		<>
-			<h1>Home</h1>
+			<h1 className="text1">Welcome to WHATEVER</h1>
+
 			{currentUser && <Redirect to="/adverts" />}
 		</>
 	);

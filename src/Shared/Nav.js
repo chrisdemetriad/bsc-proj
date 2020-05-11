@@ -105,7 +105,11 @@ const Nav = () => {
 			</NavLink>
  */}
 
-			{currentUser && <button onClick={() => app.auth().signOut()}>Sign out</button>}
+			{currentUser && (
+				<NavLink activeClassName="active" to="/account" onClick={() => app.auth().signOut()}>
+					Sign out
+				</NavLink>
+			)}
 		</>
 	);
 };

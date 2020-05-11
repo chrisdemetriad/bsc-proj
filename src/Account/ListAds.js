@@ -35,33 +35,51 @@ const ListAds = () => {
 	return (
 		<>
 			<h1>Listing</h1>
-			{adList.length > 0 ? (
-				adList.map((ad) => (
-					<div key={ad.docId}>
+
+			<div className="row no-gutters">
+				{adList.length > 0 ? (
+					adList.map((ad) => (
 						<Link to={"/advert/" + ad.docId} data="nice">
-							{ad.title}
+							<div key={ad.docId} className="shadow p-3 mb-5 bg-white rounded col-sm-3">
+								{ad.title}
+
+								<p> {ad.price} </p>
+
+								{ad.file.length > 0 ? (
+									ad.file.map((item, index) => {
+										return (
+											<div key={index}>
+												<img src={item.url} width="300" />
+												<br />
+											</div>
+										);
+									})
+								) : (
+									<label>No images</label>
+								)}
+								<div className="clearfix">
+									<div className="float-left">
+										<Link to={"/edit/" + ad.docId} data="nice">
+											Edit
+										</Link>
+									</div>
+									<div className="float-right">
+										<Link
+											onClick={() => {
+												deleteAdvert(ad.docId);
+											}}
+										>
+											Delete
+										</Link>
+									</div>
+								</div>
+							</div>
 						</Link>
-						<p> {ad.description} </p>
-						<p> {ad.type} </p>
-						<p> {ad.category} </p>
-						<p> {ad.price} </p>
-						<Link to={"/edit/" + ad.docId} data="nice">
-							Edit
-						</Link>
-						<br />
-						<br />
-						<button
-							onClick={() => {
-								deleteAdvert(ad.docId);
-							}}
-						>
-							Delete
-						</button>
-					</div>
-				))
-			) : (
-				<p>No data</p>
-			)}
+					))
+				) : (
+					<p>No data</p>
+				)}
+			</div>
 			<GdprPopup />
 		</>
 	);

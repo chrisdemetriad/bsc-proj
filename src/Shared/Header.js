@@ -5,10 +5,14 @@ import Nav from "./../Shared/Nav";
 const Header = () => {
 	return (
 		<>
-			<div>
-				{/* <img src="#" alt/> */}
-				<Search />
-				<Nav />
+			<div className="clearfix">
+				<div className="float-left">Test</div>
+				<div className="float-left">
+					<Search />
+				</div>
+				<div className="float-right">
+					<Nav />
+				</div>
 			</div>
 		</>
 	);

@@ -1,3 +1,7 @@
+import "./custom.scss";
+// import "bootstrap/dist/css/bootstrap.css";
+import "./fonts/geomanist-regular-webfont.ttf";
+import "./fonts/geomanist-regular-italic-webfont.ttf";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -6,7 +10,9 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<div className="container">
+			<App />
+		</div>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

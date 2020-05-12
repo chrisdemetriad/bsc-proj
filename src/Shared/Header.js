@@ -6,7 +6,9 @@ const Header = () => {
 	return (
 		<>
 			<div className="clearfix">
-				<div className="float-left">Test</div>
+				<div className="float-left">
+					<span>5th Zone</span>
+				</div>
 				<div className="float-left">
 					<Search />
 				</div>

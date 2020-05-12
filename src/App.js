@@ -23,7 +23,6 @@ function App() {
 		<AuthProvider>
 			<Suspense fallback={<div>Loading... </div>}>
 				<BrowserRouter>
-					<Header />
 					<Switch>
 						<PrivateRoute exact path="/adverts" component={Listing} />
 						<PrivateRoute exact path="/advert/:id" component={Ad} />

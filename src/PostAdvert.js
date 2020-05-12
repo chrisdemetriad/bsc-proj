@@ -159,194 +159,195 @@ const PostAdvert = (props) => {
 	});
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<br />
-			<label>Title</label>
-			<br />
-			<input
-				name="title"
-				type="text"
-				value={adInput.title}
-				onChange={(e) => {
-					eventHandler("title", e.target.value);
-				}}
-			/>{" "}
-			<br />
-			<label>Email</label>
-			<br />
-			<input
-				name="email"
-				type="text"
-				value={adInput.email}
-				onChange={(e) => {
-					eventHandler("email", e.target.value);
-				}}
-			/>
-			<br />
-			<label>Phone</label>
-			<br />
-			<input
-				name="phone"
-				type="text"
-				value={adInput.phone}
-				onChange={(e) => {
-					eventHandler("phone", e.target.value);
-				}}
-			/>
-			<br />
-			<label>City</label>
-			<br />
-			<input
-				name="city"
-				type="text"
-				value={adInput.city}
-				onChange={(e) => {
-					eventHandler("city", e.target.value);
-				}}
-			/>
-			<br />
-			<label>Post Code</label>
-			<br />
-			<br />
-			<input
-				name="postcode"
-				type="text"
-				placeholder="Post Code"
-				value={adInput.postcode}
-				onChange={(e) => {
-					eventHandler("postcode", e.target.value);
-				}}
-			/>
-			<br />
-			<br />
-			{/* <input checked="checked" name="sex" type="radio" value="male" /> Male <br /> */}
-			{/* <input name="sex" type="radio" value="female" /> Female <br /> */}
-			<input
-				name="sex"
-				type="radio"
-				value="male"
-				checked={adInput.sex === "male"}
-				onChange={(e) => {
-					eventHandler("sex", e.target.value);
-				}}
-			/>
-			Male
-			<br />
-			<input
-				name="sex"
-				type="radio"
-				value="female"
-				checked={adInput.sex === "female"}
-				onChange={(e) => {
-					eventHandler("sex", e.target.value);
-				}}
-			/>
-			Female
-			<br />
-			<label>Category</label>
-			<br />
-			<select
-				value={adInput.category}
-				onChange={(e) => {
-					eventHandler("category", e.target.value);
-				}}
-			>
-				<option value="">Select Category</option>
-				{categoryArray.length > 0 ? (
-					categoryArray.map((item, index) => {
+		<div className="container">
+			<form onSubmit={handleSubmit}>
+				<br />
+				<label>Title</label>
+				<br />
+				<input
+					name="title"
+					type="text"
+					value={adInput.title}
+					onChange={(e) => {
+						eventHandler("title", e.target.value);
+					}}
+				/>{" "}
+				<br />
+				<label>Email</label>
+				<br />
+				<input
+					name="email"
+					type="text"
+					value={adInput.email}
+					onChange={(e) => {
+						eventHandler("email", e.target.value);
+					}}
+				/>
+				<br />
+				<label>Phone</label>
+				<br />
+				<input
+					name="phone"
+					type="text"
+					value={adInput.phone}
+					onChange={(e) => {
+						eventHandler("phone", e.target.value);
+					}}
+				/>
+				<br />
+				<label>City</label>
+				<br />
+				<input
+					name="city"
+					type="text"
+					value={adInput.city}
+					onChange={(e) => {
+						eventHandler("city", e.target.value);
+					}}
+				/>
+				<br />
+				<label>Post Code</label>
+				<br />
+				<br />
+				<input
+					name="postcode"
+					type="text"
+					placeholder="Post Code"
+					value={adInput.postcode}
+					onChange={(e) => {
+						eventHandler("postcode", e.target.value);
+					}}
+				/>
+				<br />
+				<br />
+				{/* <input checked="checked" name="sex" type="radio" value="male" /> Male <br /> */}
+				{/* <input name="sex" type="radio" value="female" /> Female <br /> */}
+				<input
+					name="sex"
+					type="radio"
+					value="male"
+					checked={adInput.sex === "male"}
+					onChange={(e) => {
+						eventHandler("sex", e.target.value);
+					}}
+				/>
+				Male
+				<br />
+				<input
+					name="sex"
+					type="radio"
+					value="female"
+					checked={adInput.sex === "female"}
+					onChange={(e) => {
+						eventHandler("sex", e.target.value);
+					}}
+				/>
+				Female
+				<br />
+				<label>Category</label>
+				<br />
+				<select
+					value={adInput.category}
+					onChange={(e) => {
+						eventHandler("category", e.target.value);
+					}}
+				>
+					<option value="">Select Category</option>
+					{categoryArray.length > 0 ? (
+						categoryArray.map((item, index) => {
+							return (
+								<option value={item.title} key={index}>
+									{item.title}
+								</option>
+							);
+						})
+					) : (
+						<option value="">No category Found</option>
+					)}
+				</select>
+				<br />
+				<br />
+				<label>Description</label>
+				<br />
+				<textarea
+					cols="30"
+					rows="2"
+					name="description"
+					placeholder="Description"
+					value={adInput.description}
+					onChange={(e) => {
+						eventHandler("description", e.target.value);
+					}}
+				></textarea>
+				<br />
+				<label>Type</label>
+				<br />
+				<input
+					name="type"
+					type="text"
+					placeholder="Type"
+					value={adInput.type}
+					onChange={(e) => {
+						eventHandler("type", e.target.value);
+					}}
+				></input>
+				<br />
+				<label>Price</label>
+				<br />
+				<input
+					name="price"
+					type="price"
+					placeholder="Price"
+					value={adInput.price}
+					onChange={(e) => {
+						eventHandler("price", e.target.value);
+					}}
+				></input>
+				<br />
+				<br />
+				<select
+					value={adInput.post}
+					onChange={(e) => {
+						eventHandler("post", e.target.value);
+					}}
+				>
+					<option value="">Select post type</option>
+					<option value="1">Will also post</option>
+					<option value="2">Collection only</option>
+				</select>
+				<br />
+				<input
+					name="swap"
+					type="checkbox"
+					value="1"
+					defaultChecked={adInput.swap === "1"}
+					onChange={(e) => {
+						eventHandler("swap", e.target.value);
+					}}
+				/>
+				Keen to swap
+				<br />
+				{adInput.file.length > 0 ? (
+					adInput.file.map((item, index) => {
 						return (
-							<option value={item.title} key={index}>
-								{item.title}
-							</option>
+							<div key={index}>
+								<img src={item.url} width="100" height="100" />
+								<br />
+							</div>
 						);
 					})
 				) : (
-					<option value="">No category Found</option>
+					<label>No Image Found</label>
 				)}
-			</select>
-			<br />
-			<br />
-			<label>Description</label>
-			<br />
-			<textarea
-				cols="30"
-				rows="2"
-				name="description"
-				placeholder="Description"
-				value={adInput.description}
-				onChange={(e) => {
-					eventHandler("description", e.target.value);
-				}}
-			></textarea>
-			<br />
-			<label>Type</label>
-			<br />
-			<input
-				name="type"
-				type="text"
-				placeholder="Type"
-				value={adInput.type}
-				onChange={(e) => {
-					eventHandler("type", e.target.value);
-				}}
-			></input>
-			<br />
-			<label>Price</label>
-			<br />
-			<input
-				name="price"
-				type="price"
-				placeholder="Price"
-				value={adInput.price}
-				onChange={(e) => {
-					eventHandler("price", e.target.value);
-				}}
-			></input>
-			<br />
-			<br />
-			<select
-				value={adInput.post}
-				onChange={(e) => {
-					eventHandler("post", e.target.value);
-				}}
-			>
-				<option value="">Select post type</option>
-				<option value="1">Will also post</option>
-				<option value="2">Collection only</option>
-			</select>
-			<br />
-			<input
-				name="swap"
-				type="checkbox"
-				value="1"
-				defaultChecked={adInput.swap === "1"}
-				onChange={(e) => {
-					eventHandler("swap", e.target.value);
-				}}
-			/>
-			Keen to swap
-			<br />
-			{adInput.file.length > 0 ? (
-				adInput.file.map((item, index) => {
-					return (
-						<div key={index}>
-							<img src={item.url} width="100" height="100" />
-							<br />
-						</div>
-					);
-				})
-			) : (
-				<label>No Image Found</label>
-			)}
-			<input
-				type="file"
-				onChange={(e) => {
-					fileChangedHandler(e);
-				}}
-				multiple
-			/>
-			<br />
-			{/* <select>
+				<input
+					type="file"
+					onChange={(e) => {
+						fileChangedHandler(e);
+					}}
+					multiple
+				/>
+				<br />
+				{/* <select>
 				<option selected="selected" value="1">
 					Yes
 				</option>
@@ -355,8 +356,9 @@ const PostAdvert = (props) => {
 			<br />
 			<input name="democheckbox" type="checkbox" value="1" /> Checkbox
 			<br /> */}
-			<button type="submit">Submit</button>
-		</form>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
 	);
 };
 

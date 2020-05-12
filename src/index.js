@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css, Global, ClassNames } from "@emotion/core";
 import "./custom.scss";
 // import "bootstrap/dist/css/bootstrap.css";
 import "./fonts/geomanist-regular-webfont.ttf";
@@ -8,11 +10,15 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+const base = css`
+	display: flex;
+	flex-direction: column;
+`;
 ReactDOM.render(
 	<React.StrictMode>
-		<div className="container">
+		<main css={base}>
 			<App />
-		</div>
+		</main>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

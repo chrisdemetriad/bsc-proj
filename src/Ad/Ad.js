@@ -1,3 +1,6 @@
+/** @jsx jsx */
+import { jsx, css, Global, ClassNames } from "@emotion/core";
+
 import React, { useCallback, useContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 // import {dummyAds}  from "../Shared/Data/dummyAds";
@@ -5,8 +8,11 @@ import * as firebase from "firebase/app";
 
 import "firebase/firestore";
 import "firebase/storage";
+
+import MainLayout from "./../Shared/MainLayout";
+
 const Advert = (props) => {
-	const [adInput, setAdInput] = useReducer((state, newState) => ({ ...state, ...newState }), {
+	const [advert, setAdvert] = useReducer((state, newState) => ({ ...state, ...newState }), {
 		postCode: "",
 		category: "",
 		description: "",
@@ -18,13 +24,18 @@ const Advert = (props) => {
 		city: "",
 		file: [],
 	});
+
+	const [phone, setPhone] = useState("Show phone");
+	const [email, setEmail] = useState("Show email");
+
 	useEffect(() => {
 		if (props.match.params.id) {
 			EditPost(props.match.params.id);
 		}
 	}, []);
+
 	const handleChangeForAdInput = (name, newValue) => {
-		setAdInput({ [name]: newValue });
+		setAdvert({ [name]: newValue });
 	};
 
 	async function EditPost() {
@@ -64,31 +75,76 @@ const Advert = (props) => {
 		//   });
 	}
 
+	const row = css`
+		> [class*="col-"] > div {
+			background: white;
+			border-radius: 2px;
+			height: 100%;
+		}
+	`;
+
+	const imageHolder = css`
+		text-align: center;
+		background: rgb(34, 193, 195);
+		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
+	`;
+
 	return (
-		<div key={adInput.title}>
-			{adInput.file.length > 0 ? (
-				adInput.file.map((item, index) => {
-					return (
-						<div key={index}>
-							<img src={item.url} width="100" height="100" />
-							<br />
-						</div>
-					);
-				})
-			) : (
-				<label>No images</label>
-			)}
-			<p> {adInput.title} </p>
-			<p> {adInput.description} </p>
-			<p> {adInput.price} </p>
-			<p> {adInput.email} </p>
-			<p> {adInput.postcode} </p>
-			<p> {adInput.category} </p>
-			<p> {adInput.city} </p>
-			<p> {adInput.title} </p>
-			<p> {adInput.type} </p>
-			<p> {adInput.phone} </p>
-		</div>
+		<MainLayout>
+			<h1>{advert.title}</h1>
+
+			<div className="row" css={row}>
+				<div className="col-7">
+					<div className="p-4">
+						{advert.file.length > 0 ? (
+							advert.file.map((item, index) => {
+								return (
+									<div css={imageHolder} key={index}>
+										<img src={item.url} height="500" />
+										<br />
+									</div>
+								);
+							})
+						) : (
+							<label>No images</label>
+						)}
+					</div>
+				</div>
+				<div className="col-5">
+					<div className="p-4">
+						<button
+							className="btn btn-outline-secondary w-100"
+							onClick={() => {
+								setPhone(advert.phone);
+							}}
+						>
+							{phone}
+						</button>
+
+						<button
+							className="btn btn-outline-secondary w-100"
+							onClick={() => {
+								setEmail(advert.email);
+							}}
+						>
+							{email}
+						</button>
+
+						<p> {advert.postcode} </p>
+						<p> {advert.category} </p>
+						<p> {advert.city} </p>
+						<p> {advert.type} </p>
+					</div>
+				</div>
+				<div className="w-100 mb-2"></div>
+				<div className="col position-relative">
+					{advert.description}
+					<a href="#" className="position-absolute top-0 right-0">
+						Report
+					</a>
+				</div>
+			</div>
+		</MainLayout>
 	);
 };
 

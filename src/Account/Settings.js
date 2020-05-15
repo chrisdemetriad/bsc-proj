@@ -1,11 +1,11 @@
 import React from "react";
+import MainLayout from "./../Shared/MainLayout";
 
 const Settings = () => {
 	return (
-		<>
-			<h1>My account</h1>
-			<h2>Settings</h2>
-		</>
+		<MainLayout>
+			<h2>My account</h2>
+		</MainLayout>
 	);
 };
 

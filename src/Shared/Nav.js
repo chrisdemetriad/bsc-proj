@@ -1,3 +1,6 @@
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+
 import React, { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Auth";
@@ -10,107 +13,108 @@ const Nav = () => {
 	const { currentUser } = useContext(AuthContext);
 	console.log(path);
 
-	return (
-		<>
-			{(() => {
-				switch (path) {
-					case "/account":
-						return (
-							<>
-								<NavLink activeClassName="active" to="/adverts">
-									Adverts
-								</NavLink>
-								<NavLink activeClassName="active" to="/account/settings">
-									Settings
-								</NavLink>
-							</>
-						);
-					case "/account/settings":
-						return (
-							<>
-								<NavLink activeClassName="active" to="/adverts">
-									Adverts
-								</NavLink>
-								<NavLink activeClassName="active" to="/account">
-									My adverts
-								</NavLink>
-							</>
-						);
-					case "/":
-						return (
-							<>
-								{!currentUser && (
-									<>
-										<NavLink activeClassName="active" to="/login">
-											Log in
-										</NavLink>
-										<NavLink activeClassName="active" to="/signup">
-											Sign up
-										</NavLink>
-									</>
-								)}
-								{currentUser && (
-									<>
-										<NavLink activeClassName="active" to="/Post-Ad">
-											Add Post
-										</NavLink>
-										<NavLink activeClassName="active" to="/post-advert">
-											Post advert
-										</NavLink>
-										<NavLink activeClassName="active" to="/account">
-											My account
-										</NavLink>
-									</>
-								)}
-							</>
-						);
-					case "/signup":
-						return;
-					case "/login":
-						return;
-					case "/adverts":
-						return (
-							<>
-								<NavLink activeClassName="active" to="/post-advert">
-									Post advert
-								</NavLink>
-								<NavLink activeClassName="active" to="/account/settings">
-									Settings
-								</NavLink>
-								<NavLink activeClassName="active" to="/account">
-									My account
-								</NavLink>
-							</>
-						);
-					case "/advert":
-						return (
-							<>
-								<NavLink activeClassName="active" to="/post-advert">
-									Post advert
-								</NavLink>
-								<NavLink activeClassName="active" to="/account/settings">
-									Settings
-								</NavLink>
-								<NavLink activeClassName="active" to="/account">
-									My account
-								</NavLink>
-							</>
-						);
-					default:
-						return;
-				}
-			})()}
-			{/* <NavLink activeClassName="active" to="/">
-				Home
-			</NavLink>
- */}
+	const routesContainer = css`
+		> a {
+			margin-left: 30px;
+		}
+	`;
 
-			{currentUser && (
-				<NavLink activeClassName="active" to="/account" onClick={() => app.auth().signOut()}>
-					Sign out
-				</NavLink>
-			)}
-		</>
+	return (
+		<React.Fragment>
+			<div css={routesContainer}>
+				{(() => {
+					switch (path) {
+						case "/account":
+							return (
+								<React.Fragment>
+									<NavLink activeClassName="active" to="/adverts">
+										Adverts
+									</NavLink>
+									<NavLink activeClassName="active" to="/account/settings">
+										Settings
+									</NavLink>
+								</React.Fragment>
+							);
+						case "/account/settings":
+							return (
+								<React.Fragment>
+									<NavLink activeClassName="active" to="/adverts">
+										Adverts
+									</NavLink>
+									<NavLink activeClassName="active" to="/account">
+										My adverts
+									</NavLink>
+								</React.Fragment>
+							);
+						case "/":
+							return (
+								<React.Fragment>
+									{!currentUser && (
+										<React.Fragment>
+											<NavLink activeClassName="active" to="/signup">
+												Sign up
+											</NavLink>
+											<NavLink activeClassName="active" to="/login">
+												Log in
+											</NavLink>
+										</React.Fragment>
+									)}
+									{currentUser && (
+										<React.Fragment>
+											<NavLink activeClassName="active" to="/post">
+												Post advert
+											</NavLink>
+											<NavLink activeClassName="active" to="/account">
+												My account
+											</NavLink>
+										</React.Fragment>
+									)}
+								</React.Fragment>
+							);
+						case "/signup":
+							return;
+						case "/login":
+							return;
+						case "/adverts":
+							return (
+								<React.Fragment>
+									<NavLink activeClassName="active" to="/post">
+										Post advert
+									</NavLink>
+									<NavLink activeClassName="active" to="/account/settings">
+										Settings
+									</NavLink>
+									<NavLink activeClassName="active" to="/account">
+										My account
+									</NavLink>
+								</React.Fragment>
+							);
+						case "/advert":
+							return (
+								<React.Fragment>
+									<NavLink activeClassName="active" to="/post">
+										Post advert
+									</NavLink>
+									<NavLink activeClassName="active" to="/account/settings">
+										Settings
+									</NavLink>
+									<NavLink activeClassName="active" to="/account">
+										My account
+									</NavLink>
+								</React.Fragment>
+							);
+						default:
+							return;
+					}
+				})()}
+
+				{currentUser && (
+					<NavLink activeClassName="active" to="/account" onClick={() => app.auth().signOut()}>
+						Sign out
+					</NavLink>
+				)}
+			</div>
+		</React.Fragment>
 	);
 };
 

@@ -3,7 +3,7 @@ import React from "react";
 const CookiePolicy = () => {
 	return (
 		<div>
-			<h1>Cookies</h1>
+			<h2>Cookies</h2>
 		</div>
 	);
 };

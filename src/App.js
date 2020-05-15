@@ -4,19 +4,22 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 
+const Home = lazy(() => import("./Home"));
+
 const Settings = lazy(() => import("./Account/Settings"));
-const ListAds = lazy(() => import("./Account/ListAds"));
-// const EditAds = lazy(() => import("./Account/EditAds"));
+const MyAdverts = lazy(() => import("./Account/MyAdverts"));
+
 const Login = lazy(() => import("./Auth/Login"));
 const Signup = lazy(() => import("./Auth/Signup"));
+
 const Listing = lazy(() => import("./Ad/Listing"));
 const Ad = lazy(() => import("./Ad/Ad"));
-const Home = lazy(() => import("./Home"));
+
+const Post = lazy(() => import("./Post"));
+const Success = lazy(() => import("./Success"));
+
 const CookiePolicy = lazy(() => import("./Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
-const PostAdvert = lazy(() => import("./PostAdvert"));
-const Header = lazy(() => import("./Shared/Header"));
-const SuccessAds = lazy(() => import("./success"));
 
 function App() {
 	return (
@@ -26,11 +29,11 @@ function App() {
 					<Switch>
 						<PrivateRoute exact path="/adverts" component={Listing} />
 						<PrivateRoute exact path="/advert/:id" component={Ad} />
-						<PrivateRoute exact path="/post-advert" component={PostAdvert} />
-						<PrivateRoute exact path="/edit/:id" component={PostAdvert} />
-						<PrivateRoute exact path="/success/:id" component={SuccessAds} />
+						<PrivateRoute exact path="/post" component={Post} />
+						<PrivateRoute exact path="/edit/:id" component={Post} />
+						<PrivateRoute exact path="/success/:id" component={Success} />
 
-						<PrivateRoute exact path="/account" component={ListAds} />
+						<PrivateRoute exact path="/account" component={MyAdverts} />
 						<PrivateRoute exact path="/account/settings" component={Settings} />
 
 						<Route exact path="/login" component={Login} />
@@ -40,25 +43,11 @@ function App() {
 						<Route component={PrivacyPolicy} path="/privacy-policy" />
 
 						<Route component={Home} path="/" />
-						{/* {loggedIn ? <Redirect to="/adverts" /> : <Home />}
-						</Route> */}
 					</Switch>
 				</BrowserRouter>
 			</Suspense>
 		</AuthProvider>
 	);
-
-	//     <Router>
-	//       <Routes>
-	//         <Route path="/" element={<Home />} />
-	//         <Route path="/adverts" element={<Listing />} />
-	// <Router></Router>
-	//         <Route path="account" element={<ListAds />}>
-	//           <Route path="settings" element={<Settings />} />
-	//           <Route path="edit-ads" element={<E />} />
-	//         </Route>
-	//       </Routes>
-	//     </Router>
 }
 
 export default App;

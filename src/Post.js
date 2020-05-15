@@ -4,7 +4,7 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
-const PostAdvert = (props) => {
+const Post = (props) => {
 	const ref = firebase.firestore().collection("adverts");
 	const [imageArray, setImageArray] = useState([]);
 	const [categoryArray, setCategoryArray] = useState([]);
@@ -362,4 +362,4 @@ const PostAdvert = (props) => {
 	);
 };
 
-export default PostAdvert;
+export default Post;

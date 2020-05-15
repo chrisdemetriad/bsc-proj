@@ -46,18 +46,17 @@ const Login = ({ history }) => {
 
 	const title = css`
 		margin-bottom: 20px;
-		font-size: 4rem;
+		font-size: 2rem;
 	`;
 
 	const button = css`
 		margin: 20px 0;
 		width: 100%;
-		font-size: 1.6rem;
 	`;
 
 	const subtitle = css`
 		margin-bottom: 30px;
-		font-size: 1.4rem;
+		font-size: 0.9rem;
 	`;
 
 	return (

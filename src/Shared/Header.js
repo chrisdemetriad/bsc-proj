@@ -1,22 +1,66 @@
+/** @jsx jsx */
+import { jsx, css, Global, ClassNames } from "@emotion/core";
+
 import React from "react";
 import Search from "./../Shared/Search";
 import Nav from "./../Shared/Nav";
 
+const headerContainer = css`
+	margin-top: 5px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+	align-items: center;
+	> div {
+		margin: 10px;
+	}
+`;
+
+const searchBoxContainer = css`
+	flex: 1 1 auto;
+`;
+
+const logoContainer = css`
+	background: #372a2a;
+	display: inline-block;
+	height: 44px;
+	text-align: center;
+	letter-spacing: -1px;
+	position: relative;
+	color: white;
+	width: 60px;
+	&:before {
+		border-bottom: 8px solid #372a2a;
+		border-left: 30px solid transparent;
+		border-right: 30px solid transparent;
+		content: "";
+		height: 0;
+		left: 0;
+		position: absolute;
+		top: -8px;
+		width: 0;
+	}
+`;
+
+const logo = css`
+	font-weight: 900;
+`;
+
 const Header = () => {
 	return (
-		<>
-			<div className="clearfix">
-				<div className="float-left">
-					<span>5th Zone</span>
+		<React.Fragment>
+			<div css={headerContainer} className="clearfix d-flex">
+				<div>
+					<div css={logoContainer}>
+						<h1 css={logo}>5th</h1>
+					</div>
 				</div>
-				<div className="float-left">
+				<div css={searchBoxContainer}>
 					<Search />
 				</div>
-				<div className="float-right">
-					<Nav />
-				</div>
+
+				<Nav />
 			</div>
-		</>
+		</React.Fragment>
 	);
 };
 

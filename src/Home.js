@@ -16,7 +16,7 @@ const Home = () => {
 	const { currentUser } = useContext(AuthContext);
 	return (
 		<React.Fragment>
-			<div css={base}>
+			<div css={base} className="container">
 				<Header />
 				<div className="">
 					<h1 className="text1">Welcome to Whatever</h1>

@@ -5,6 +5,9 @@ import React, { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import app from "../.base";
+import { AiOutlineLogout, AiOutlineLogin, AiOutlineUserAdd, AiOutlineUser } from "react-icons/ai";
+import { IoIosAdd } from "react-icons/io";
+import { FiUser, FiSettings, FiList } from "react-icons/fi";
 
 const Nav = () => {
 	let location = useLocation();
@@ -28,10 +31,10 @@ const Nav = () => {
 							return (
 								<React.Fragment>
 									<NavLink activeClassName="active" to="/adverts">
-										Adverts
+										<FiList /> Adverts
 									</NavLink>
 									<NavLink activeClassName="active" to="/account/settings">
-										Settings
+										<FiSettings /> Settings
 									</NavLink>
 								</React.Fragment>
 							);
@@ -39,10 +42,10 @@ const Nav = () => {
 							return (
 								<React.Fragment>
 									<NavLink activeClassName="active" to="/adverts">
-										Adverts
+										<FiList /> Adverts
 									</NavLink>
 									<NavLink activeClassName="active" to="/account">
-										My adverts
+										<AiOutlineUser /> My account
 									</NavLink>
 								</React.Fragment>
 							);
@@ -52,20 +55,20 @@ const Nav = () => {
 									{!currentUser && (
 										<React.Fragment>
 											<NavLink activeClassName="active" to="/signup">
-												Sign up
+												<AiOutlineUserAdd /> Sign up
 											</NavLink>
 											<NavLink activeClassName="active" to="/login">
-												Log in
+												<AiOutlineLogin /> Log in
 											</NavLink>
 										</React.Fragment>
 									)}
 									{currentUser && (
 										<React.Fragment>
-											<NavLink activeClassName="active" to="/post">
-												Post advert
+											<NavLink activeClassName="active" to="/post" className="btn btn-primary">
+												<IoIosAdd /> Post advert
 											</NavLink>
 											<NavLink activeClassName="active" to="/account">
-												My account
+												<AiOutlineUser /> My account
 											</NavLink>
 										</React.Fragment>
 									)}
@@ -78,28 +81,22 @@ const Nav = () => {
 						case "/adverts":
 							return (
 								<React.Fragment>
-									<NavLink activeClassName="active" to="/post">
-										Post advert
-									</NavLink>
-									<NavLink activeClassName="active" to="/account/settings">
-										Settings
+									<NavLink activeClassName="active" to="/post" className="btn btn-primary">
+										<IoIosAdd /> Post advert
 									</NavLink>
 									<NavLink activeClassName="active" to="/account">
-										My account
+										<FiUser /> My account
 									</NavLink>
 								</React.Fragment>
 							);
 						case "/advert":
 							return (
 								<React.Fragment>
-									<NavLink activeClassName="active" to="/post">
-										Post advert
-									</NavLink>
-									<NavLink activeClassName="active" to="/account/settings">
-										Settings
+									<NavLink activeClassName="active" to="/post" className="btn btn-primary">
+										<IoIosAdd /> Post advert
 									</NavLink>
 									<NavLink activeClassName="active" to="/account">
-										My account
+										<AiOutlineUser /> My account
 									</NavLink>
 								</React.Fragment>
 							);
@@ -109,8 +106,8 @@ const Nav = () => {
 				})()}
 
 				{currentUser && (
-					<NavLink activeClassName="active" to="/account" onClick={() => app.auth().signOut()}>
-						Sign out
+					<NavLink activeClassName="active" to="/account" title="Sign out" onClick={() => app.auth().signOut()}>
+						<AiOutlineLogout /> Sign out
 					</NavLink>
 				)}
 			</div>

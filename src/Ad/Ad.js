@@ -89,6 +89,11 @@ const Advert = (props) => {
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 	`;
 
+	const advertInfo = css`
+		flex-direction: column;
+		justify-content: space-between;
+	`;
+
 	return (
 		<MainLayout>
 			<h1>{advert.title}</h1>
@@ -110,39 +115,41 @@ const Advert = (props) => {
 						)}
 					</div>
 				</div>
-				<div className="col-5">
-					<div className="p-4">
-						<button
-							className="btn btn-outline-secondary w-100"
-							onClick={() => {
-								setPhone(advert.phone);
-							}}
-						>
-							{phone}
-						</button>
+				<div className="col-5 position-relative">
+					<div css={advertInfo} className="p-4 d-flex">
+						<div className="clearfix">
+							<button
+								className="btn btn-secondary "
+								onClick={() => {
+									setPhone(advert.phone);
+								}}
+							>
+								{phone}
+							</button>
 
-						<button
-							className="btn btn-outline-secondary w-100"
-							onClick={() => {
-								setEmail(advert.email);
-							}}
-						>
-							{email}
-						</button>
+							<button
+								className="btn btn-secondary float-right"
+								onClick={() => {
+									setEmail(advert.email);
+								}}
+							>
+								{email}
+							</button>
+							<div className="description">{advert.description}</div>
+						</div>
 
-						<p> {advert.postcode} </p>
-						<p> {advert.category} </p>
-						<p> {advert.city} </p>
-						<p> {advert.type} </p>
+						{/* <p> {advert.category} </p> */}
+						<span>
+							{advert.city}
+							{advert.postcode && ", " + advert.postcode}{" "}
+						</span>
 					</div>
-				</div>
-				<div className="w-100 mb-2"></div>
-				<div className="col position-relative">
-					{advert.description}
+
 					<a href="#" className="position-absolute top-0 right-0">
 						Report
 					</a>
 				</div>
+				{/* <div className="w-100 mb-2"></div> */}
 			</div>
 		</MainLayout>
 	);

@@ -2,6 +2,15 @@
 // $body-bg: #000;
 // Import Bootstrap and its default variables
 @import-normalize;
+
+$primary: #002f34;
+$secondary: #ff304f;
+
+// $enable-gradients: false;
+// $spacer: 1.2rem;
+// $border-width: 0;
+// $btn-border-radius: 0.1rem;
+
 @import "~bootstrap/scss/bootstrap.scss";
 
 @font-face {

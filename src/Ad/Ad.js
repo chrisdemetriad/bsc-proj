@@ -5,6 +5,7 @@ import React, { useCallback, useContext, useEffect, useReducer, useState } from 
 import { useParams } from "react-router-dom";
 // import {dummyAds}  from "../Shared/Data/dummyAds";
 import * as firebase from "firebase/app";
+import { AiOutlineEye, AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
 
 import "firebase/firestore";
 import "firebase/storage";
@@ -13,7 +14,7 @@ import MainLayout from "./../Shared/MainLayout";
 
 const Advert = (props) => {
 	const [advert, setAdvert] = useReducer((state, newState) => ({ ...state, ...newState }), {
-		postCode: "",
+		postcode: "",
 		category: "",
 		description: "",
 		type: "",
@@ -51,7 +52,7 @@ const Advert = (props) => {
 				if (docRef.exists) {
 					let documentData = docRef.data();
 					handleChangeForAdInput("email", documentData.email);
-					handleChangeForAdInput("postCode", documentData.email);
+					handleChangeForAdInput("postcode", documentData.postcode);
 					handleChangeForAdInput("category", documentData.category);
 					handleChangeForAdInput("description", documentData.description);
 					handleChangeForAdInput("type", documentData.type);
@@ -87,6 +88,9 @@ const Advert = (props) => {
 		text-align: center;
 		background: rgb(34, 193, 195);
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
+		img {
+			max-height: 400px;
+		}
 	`;
 
 	const advertInfo = css`
@@ -105,7 +109,7 @@ const Advert = (props) => {
 							advert.file.map((item, index) => {
 								return (
 									<div css={imageHolder} key={index}>
-										<img src={item.url} height="500" />
+										<img src={item.url} />
 										<br />
 									</div>
 								);
@@ -119,29 +123,32 @@ const Advert = (props) => {
 					<div css={advertInfo} className="p-4 d-flex">
 						<div className="clearfix">
 							<button
-								className="btn btn-secondary "
+								className="btn btn-outline-primary"
 								onClick={() => {
 									setPhone(advert.phone);
 								}}
 							>
-								{phone}
+								<AiOutlinePhone /> {phone}
 							</button>
 
 							<button
-								className="btn btn-secondary float-right"
+								className="btn btn-outline-primary float-right"
 								onClick={() => {
 									setEmail(advert.email);
 								}}
 							>
-								{email}
+								<AiOutlineMail /> {email}
 							</button>
+							<div className="w-100 mb-5"></div>
+							<h3>£{advert.price}</h3>
+							<div className="w-100 mb-5"></div>
 							<div className="description">{advert.description}</div>
 						</div>
 
 						{/* <p> {advert.category} </p> */}
 						<span>
 							{advert.city}
-							{advert.postcode && ", " + advert.postcode}{" "}
+							{advert.postcode && ", " + advert.postcode}
 						</span>
 					</div>
 

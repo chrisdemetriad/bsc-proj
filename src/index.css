@@ -3,6 +3,12 @@
 	color: #231f20;
 }
 
+html {
+	/* An attempt to prevent page jumping by always showing scroll bars */
+	overflow: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+}
+
 body {
 	margin: 0;
 	padding: 0;

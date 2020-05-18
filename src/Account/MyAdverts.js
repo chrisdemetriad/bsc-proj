@@ -1,16 +1,17 @@
+/** @jsx jsx */
+import { jsx, css, Global, ClassNames } from "@emotion/core";
+
 import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import { GdprPopup } from "../Shared/GdprPopup";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
 
-/** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
-
 const MyAdverts = () => {
 	const [user, setUser] = useState(firebase.auth().currentUser.email);
-	const [adList, setAdList] = useState([]);
+	const [advert, setAdvert] = useState([]);
 
 	useEffect(() => {
 		getData();
@@ -23,8 +24,8 @@ const MyAdverts = () => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
 		});
-		// console.log(values);
-		setAdList(values);
+		console.log(values);
+		setAdvert(values);
 	}
 
 	async function deleteAdvert(id) {
@@ -60,8 +61,8 @@ const MyAdverts = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{adList.length > 0 ? (
-						adList.map((ad) => (
+					{advert.length > 0 ? (
+						advert.map((ad) => (
 							<tr key={ad.docId}>
 								{ad.file.length > 0 ? (
 									ad.file.map((item, index) => {
@@ -80,7 +81,7 @@ const MyAdverts = () => {
 									</Link>
 								</td>
 								<td>
-									<Link to={"/edit/" + ad.docId} data="nice">
+									<Link to={"/edit/" + ad.docId} data="edit">
 										Edit
 									</Link>
 								</td>

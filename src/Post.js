@@ -4,7 +4,11 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 
+import MainLayout from "./Shared/MainLayout";
+
 const Post = (props) => {
+	console.log(props);
+
 	const ref = firebase.firestore().collection("adverts");
 	const [imageArray, setImageArray] = useState([]);
 	const [categoryArray, setCategoryArray] = useState([]);
@@ -59,7 +63,7 @@ const Post = (props) => {
 				if (docRef.exists) {
 					let documentData = docRef.data();
 					eventHandler("email", documentData.email);
-					eventHandler("postcode", documentData.email);
+					eventHandler("postcode", documentData.postcode);
 					eventHandler("category", documentData.category);
 					eventHandler("description", documentData.description);
 					eventHandler("type", documentData.type);
@@ -82,7 +86,7 @@ const Post = (props) => {
 	}
 
 	function fileChangedHandler(event) {
-		//this.setState({ selectedFile: event.target.files[0] })
+		// this.setState({ selectedFile: event.target.files[0] })
 
 		let fileArray = [];
 		for (let index = 0; index < event.target.files.length; index++) {
@@ -159,129 +163,183 @@ const Post = (props) => {
 	});
 
 	return (
-		<div className="container">
+		<MainLayout>
 			<form onSubmit={handleSubmit}>
-				<br />
-				<label>Title</label>
-				<br />
-				<input
-					name="title"
-					type="text"
-					value={adInput.title}
-					onChange={(e) => {
-						eventHandler("title", e.target.value);
-					}}
-				/>{" "}
-				<br />
-				<label>Email</label>
-				<br />
-				<input
-					name="email"
-					type="text"
-					value={adInput.email}
-					onChange={(e) => {
-						eventHandler("email", e.target.value);
-					}}
-				/>
-				<br />
-				<label>Phone</label>
-				<br />
-				<input
-					name="phone"
-					type="text"
-					value={adInput.phone}
-					onChange={(e) => {
-						eventHandler("phone", e.target.value);
-					}}
-				/>
-				<br />
-				<label>City</label>
-				<br />
-				<input
-					name="city"
-					type="text"
-					value={adInput.city}
-					onChange={(e) => {
-						eventHandler("city", e.target.value);
-					}}
-				/>
-				<br />
-				<label>Post Code</label>
-				<br />
-				<br />
-				<input
-					name="postcode"
-					type="text"
-					placeholder="Post Code"
-					value={adInput.postcode}
-					onChange={(e) => {
-						eventHandler("postcode", e.target.value);
-					}}
-				/>
-				<br />
-				<br />
-				{/* <input checked="checked" name="sex" type="radio" value="male" /> Male <br /> */}
-				{/* <input name="sex" type="radio" value="female" /> Female <br /> */}
-				<input
-					name="sex"
-					type="radio"
-					value="male"
-					checked={adInput.sex === "male"}
-					onChange={(e) => {
-						eventHandler("sex", e.target.value);
-					}}
-				/>
-				Male
-				<br />
-				<input
-					name="sex"
-					type="radio"
-					value="female"
-					checked={adInput.sex === "female"}
-					onChange={(e) => {
-						eventHandler("sex", e.target.value);
-					}}
-				/>
-				Female
-				<br />
-				<label>Category</label>
-				<br />
-				<select
-					value={adInput.category}
-					onChange={(e) => {
-						eventHandler("category", e.target.value);
-					}}
-				>
-					<option value="">Select Category</option>
-					{categoryArray.length > 0 ? (
-						categoryArray.map((item, index) => {
+				<div className="form-group">
+					<label>Title</label>
+					<input
+						name="title"
+						className="form-control"
+						type="text"
+						value={adInput.title}
+						onChange={(e) => {
+							eventHandler("title", e.target.value);
+						}}
+					/>
+				</div>
+				<div className="form-row">
+					<div className="form-group col-md-6">
+						<label>Email</label>
+
+						<input
+							name="email"
+							className="form-control"
+							type="text"
+							value={adInput.email}
+							onChange={(e) => {
+								eventHandler("email", e.target.value);
+							}}
+						/>
+					</div>
+					<div className="form-group col-md-6">
+						<label>Phone</label>
+
+						<input
+							name="phone"
+							className="form-control"
+							type="text"
+							value={adInput.phone}
+							onChange={(e) => {
+								eventHandler("phone", e.target.value);
+							}}
+						/>
+					</div>
+				</div>
+				<div className="form-row">
+					<div className="form-group col-md-6">
+						<label>City</label>
+
+						<input
+							name="city"
+							className="form-control"
+							type="text"
+							value={adInput.city}
+							onChange={(e) => {
+								eventHandler("city", e.target.value);
+							}}
+						/>
+					</div>
+					<div className="form-group col-md-6">
+						<label>Post Code</label>
+
+						<input
+							name="postcode"
+							className="form-control"
+							type="text"
+							placeholder="Post Code"
+							value={adInput.postcode}
+							onChange={(e) => {
+								eventHandler("postcode", e.target.value);
+							}}
+						/>
+					</div>
+				</div>
+
+				<div className="form-group">
+					<label>Category</label>
+
+					<select
+						className="form-control"
+						value={adInput.category}
+						onChange={(e) => {
+							eventHandler("category", e.target.value);
+						}}
+					>
+						<option value="">Select Category</option>
+						{categoryArray.length > 0 ? (
+							categoryArray.map((item, index) => {
+								return (
+									<option value={item.title} key={index}>
+										{item.title}
+									</option>
+								);
+							})
+						) : (
+							<option value="">No category Found</option>
+						)}
+					</select>
+				</div>
+				<div className="form-group">
+					<label>Description</label>
+
+					<textarea
+						className="form-control"
+						cols="30"
+						rows="2"
+						name="description"
+						placeholder="Description"
+						value={adInput.description}
+						onChange={(e) => {
+							eventHandler("description", e.target.value);
+						}}
+					></textarea>
+				</div>
+				<div className="form-group">
+					<label>Price</label>
+
+					<input
+						name="price"
+						className="form-control"
+						type="price"
+						placeholder="Price"
+						value={adInput.price}
+						onChange={(e) => {
+							eventHandler("price", e.target.value);
+						}}
+					></input>
+				</div>
+				<div className="form-group">
+					<select
+						className="form-control"
+						value={adInput.post}
+						onChange={(e) => {
+							eventHandler("post", e.target.value);
+						}}
+					>
+						<option value="">Select post type</option>
+						<option value="1">Will also post</option>
+						<option value="2">Collection only</option>
+					</select>
+				</div>
+
+				<div className="form-group">
+					{adInput.file.length > 0 ? (
+						adInput.file.map((item, index) => {
 							return (
-								<option value={item.title} key={index}>
-									{item.title}
-								</option>
+								<div key={index}>
+									<img src={item.url} width="100" />
+								</div>
 							);
 						})
 					) : (
-						<option value="">No category Found</option>
+						<label>No Image Found</label>
 					)}
-				</select>
-				<br />
-				<br />
-				<label>Description</label>
-				<br />
-				<textarea
-					cols="30"
-					rows="2"
-					name="description"
-					placeholder="Description"
-					value={adInput.description}
-					onChange={(e) => {
-						eventHandler("description", e.target.value);
-					}}
-				></textarea>
-				<br />
-				<label>Type</label>
-				<br />
+				</div>
+				<div className="form-group">
+					<input
+						type="file"
+						className="form-control"
+						onChange={(e) => {
+							fileChangedHandler(e);
+						}}
+						multiple
+					/>
+				</div>
+				<div className="form-group"></div>
+
+				<button type="submit" className="btn btn-primary">
+					Submit
+				</button>
+			</form>
+		</MainLayout>
+	);
+};
+
+export default Post;
+
+{
+	/* <label>Type</label>
+
 				<input
 					name="type"
 					type="text"
@@ -290,64 +348,11 @@ const Post = (props) => {
 					onChange={(e) => {
 						eventHandler("type", e.target.value);
 					}}
-				></input>
-				<br />
-				<label>Price</label>
-				<br />
-				<input
-					name="price"
-					type="price"
-					placeholder="Price"
-					value={adInput.price}
-					onChange={(e) => {
-						eventHandler("price", e.target.value);
-					}}
-				></input>
-				<br />
-				<br />
-				<select
-					value={adInput.post}
-					onChange={(e) => {
-						eventHandler("post", e.target.value);
-					}}
-				>
-					<option value="">Select post type</option>
-					<option value="1">Will also post</option>
-					<option value="2">Collection only</option>
-				</select>
-				<br />
-				<input
-					name="swap"
-					type="checkbox"
-					value="1"
-					defaultChecked={adInput.swap === "1"}
-					onChange={(e) => {
-						eventHandler("swap", e.target.value);
-					}}
-				/>
-				Keen to swap
-				<br />
-				{adInput.file.length > 0 ? (
-					adInput.file.map((item, index) => {
-						return (
-							<div key={index}>
-								<img src={item.url} width="100" height="100" />
-								<br />
-							</div>
-						);
-					})
-				) : (
-					<label>No Image Found</label>
-				)}
-				<input
-					type="file"
-					onChange={(e) => {
-						fileChangedHandler(e);
-					}}
-					multiple
-				/>
-				<br />
-				{/* <select>
+				></input> */
+}
+
+{
+	/* <select>
 				<option selected="selected" value="1">
 					Yes
 				</option>
@@ -355,11 +360,49 @@ const Post = (props) => {
 			</select>
 			<br />
 			<input name="democheckbox" type="checkbox" value="1" /> Checkbox
-			<br /> */}
-				<button type="submit">Submit</button>
-			</form>
-		</div>
-	);
-};
+			<br /> */
+}
 
-export default Post;
+{
+	/* <div className="form-group">
+					<input
+						name="swap"
+						className="form-control"
+						type="checkbox"
+						value="1"
+						defaultChecked={adInput.swap === "1"}
+						onChange={(e) => {
+							eventHandler("swap", e.target.value);
+						}}
+					/>
+					Keen to swap
+				</div> */
+}
+
+{
+	/* <div className="form-group">
+					<input
+						name="sex"
+						className="form-control"
+						type="radio"
+						value="male"
+						checked={adInput.sex === "male"}
+						onChange={(e) => {
+							eventHandler("sex", e.target.value);
+						}}
+					/>
+					Male
+					<br />
+					<input
+						name="sex"
+						type="radio"
+						value="female"
+						checked={adInput.sex === "female"}
+						onChange={(e) => {
+							eventHandler("sex", e.target.value);
+						}}
+					/>
+					Female
+					<br />
+				</div> */
+}

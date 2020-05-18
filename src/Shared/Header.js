@@ -2,6 +2,7 @@
 import { jsx, css, Global, ClassNames } from "@emotion/core";
 
 import React from "react";
+import { Link } from "react-router-dom";
 import Search from "./../Shared/Search";
 import Nav from "./../Shared/Nav";
 
@@ -39,6 +40,11 @@ const logoContainer = css`
 		top: -8px;
 		width: 0;
 	}
+	a,
+	a:hover {
+		color: white;
+		text-decoration: none;
+	}
 `;
 
 const logo = css`
@@ -51,7 +57,9 @@ const Header = () => {
 			<div css={headerContainer} className="clearfix d-flex">
 				<div>
 					<div css={logoContainer}>
-						<h1 css={logo}>5th</h1>
+						<Link to="/">
+							<h1 css={logo}>5th</h1>
+						</Link>
 					</div>
 				</div>
 				<div css={searchBoxContainer}>

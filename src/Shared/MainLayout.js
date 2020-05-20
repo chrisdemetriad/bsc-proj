@@ -11,11 +11,22 @@ const MainLayout = (props) => {
 		justify-content: center;
 	`;
 
+	const headerContainer = css`
+		background: aliceblue;
+		margin-bottom: 15px;
+	`;
+
 	return (
-		<div className="container" css={base}>
-			<Header />
-			{props.children}
-		</div>
+		<React.Fragment>
+			<div css={headerContainer}>
+				<div className="container">
+					<Header />
+				</div>
+			</div>
+			<div className="container" css={base}>
+				{props.children}
+			</div>
+		</React.Fragment>
 	);
 };
 

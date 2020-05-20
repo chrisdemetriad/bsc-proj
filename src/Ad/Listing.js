@@ -32,7 +32,7 @@ const Listing = (props) => {
 	return (
 		<MainLayout>
 			<h2>Listing</h2>
-			{advert.length > 0 ? (
+			{advert && advert.length > 0 ? (
 				advert.map((ad) => (
 					<div key={ad.docId}>
 						{/* <Link to={"/advert/" + ad.docId} data="nice"> */}

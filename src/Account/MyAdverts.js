@@ -2,6 +2,7 @@
 import { jsx, css, Global, ClassNames } from "@emotion/core";
 
 import React, { useEffect, useState } from "react";
+import { map, finalize } from "rxjs/operators";
 
 import { Link } from "react-router-dom";
 import { GdprPopup } from "../Shared/GdprPopup";
@@ -9,7 +10,7 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
 
-const MyAdverts = () => {
+const MyAdverts = (props) => {
 	const [user, setUser] = useState(firebase.auth().currentUser.email);
 	const [advert, setAdvert] = useState([]);
 
@@ -24,6 +25,7 @@ const MyAdverts = () => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
 		});
+
 		console.log(values);
 		setAdvert(values);
 	}
@@ -36,6 +38,7 @@ const MyAdverts = () => {
 			.delete()
 			.then(() => {
 				console.log("Document successfully deleted!");
+				getData();
 			})
 			.catch((error) => {
 				console.error("Error removing document: ", error);
@@ -51,30 +54,32 @@ const MyAdverts = () => {
 		<MainLayout>
 			<h2>My adverts</h2>
 
-			<table class="table table-sm table-bordered">
-				<thead>
-					<tr>
-						<th scope="col">Image</th>
-						<th scope="col">Title</th>
-						<th scope="col">Edit</th>
-						<th scope="col">Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-					{advert.length > 0 ? (
-						advert.map((ad) => (
+			{advert.length > 0 ? (
+				<table class="table table-sm table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Image</th>
+							<th scope="col">Title</th>
+							<th scope="col">Edit</th>
+							<th scope="col">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{advert.map((ad) => (
 							<tr key={ad.docId}>
-								{ad.file.length > 0 ? (
-									ad.file.map((item, index) => {
-										return (
-											<td key={index}>
-												<img src={item.url} width="300" css={image} />
-											</td>
-										);
-									})
-								) : (
-									<td>No images</td>
-								)}
+								<td>
+									{ad.file.length > 0 ? (
+										ad.file.map((item, index) => {
+											return (
+												<span key={index}>
+													<img src={item.url} width="300" css={image} />
+												</span>
+											);
+										})
+									) : (
+										<span>No images</span>
+									)}
+								</td>
 								<td>
 									<Link to={"/advert/" + ad.docId} data="nice">
 										{ad.title} - {ad.price}
@@ -95,12 +100,13 @@ const MyAdverts = () => {
 									</Link>
 								</td>
 							</tr>
-						))
-					) : (
-						<p>No data</p>
-					)}
-				</tbody>
-			</table>
+						))}
+					</tbody>
+				</table>
+			) : (
+				<p>No data</p>
+			)}
+
 			<GdprPopup />
 		</MainLayout>
 	);

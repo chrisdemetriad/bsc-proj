@@ -16,7 +16,7 @@ const Listing = lazy(() => import("./Ad/Listing"));
 const Ad = lazy(() => import("./Ad/Ad"));
 
 const Post = lazy(() => import("./Post"));
-const Success = lazy(() => import("./Success"));
+const Success = lazy(() => import("./success"));
 
 const CookiePolicy = lazy(() => import("./Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
@@ -31,7 +31,7 @@ function App() {
 						<PrivateRoute exact path="/advert/:id" component={Ad} />
 						<PrivateRoute exact path="/post" component={Post} />
 						<PrivateRoute exact path="/edit/:id" component={Post} />
-						<PrivateRoute exact path="/success/:id" component={Success} />
+						<PrivateRoute exact path="/success/:id/:status" component={Success} />
 
 						<PrivateRoute exact path="/account" component={MyAdverts} />
 						<PrivateRoute exact path="/account/settings" component={Settings} />

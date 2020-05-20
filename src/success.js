@@ -6,7 +6,14 @@ import MainLayout from "./Shared/MainLayout";
 
 const Success = (props) => {
 	const [title, setTitle] = useState("");
+	const [newEntry, setNewEntry] = useState(true);
+
 	useEffect(() => {
+		if (props.match.params.status == "edited") {
+			setNewEntry(false);
+		} else if (props.match.params.status == "added") {
+			setNewEntry(true);
+		}
 		if (props.match.params.id) {
 			EditPost(props.match.params.id);
 		}
@@ -36,7 +43,8 @@ const Success = (props) => {
 	return (
 		<>
 			<MainLayout>
-				<h2>The advert has been successfully posted</h2>
+				{newEntry ? <h2>The advert has been successfully posted</h2> : <h2>The advert has been successfully edited</h2>}
+
 				<Link to={"/advert/" + props.match.params.id} data="nice">
 					{title}
 				</Link>

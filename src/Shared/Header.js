@@ -8,8 +8,8 @@ import Nav from "./../Shared/Nav";
 
 const headerContainer = css`
 	margin-top: 5px;
-	border-bottom: 1px solid #ddd;
-	margin-bottom: 15px;
+	// border-bottom: 1px solid #ddd;
+	// margin-bottom: 15px;
 	align-items: center;
 	> div {
 		margin: 10px;

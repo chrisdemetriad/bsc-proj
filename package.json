@@ -1,6 +1,6 @@
 {
 	"name": "app",
-	"version": "1",
+	"version": "0.1.0",
 	"private": true,
 	"homepage": "http://chrisdemetriad.github.io/app",
 	"dependencies": {

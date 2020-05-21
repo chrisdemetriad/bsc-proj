@@ -1,8 +1,8 @@
 {
-	"name": "app",
+	"name": "bsc-proj",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "http://chrisdemetriad.github.io/app",
+	"homepage": "http://chrisdemetriad.github.io/bsc-proj",
 	"dependencies": {
 		"@emotion/core": "^10.0.28",
 		"@testing-library/jest-dom": "^4.2.4",

@@ -20,7 +20,6 @@ const Success = (props) => {
 	}, []);
 
 	async function EditPost() {
-		console.log("editPost");
 		firebase
 			.firestore()
 			.collection("adverts")
@@ -40,14 +39,35 @@ const Success = (props) => {
 				console.error("Error adding document: ", error);
 			});
 	}
+
 	return (
 		<>
 			<MainLayout>
-				{newEntry ? <h2>The advert has been successfully posted</h2> : <h2>The advert has been successfully edited</h2>}
+				{newEntry ? (
+					<>
+						<p>Your advert has been successfully posted.</p>
 
-				<Link to={"/advert/" + props.match.params.id} data="nice">
-					{title}
-				</Link>
+						<div className="mb-3">
+							<Link to={"/advert/" + props.match.params.id}>{title}</Link> - <Link to={"/edit/" + props.match.params.id}>edit</Link>.
+						</div>
+
+						<p>
+							Go to your <Link to="/account">adverts</Link> or <Link to="/post">post a new advert</Link>!
+						</p>
+					</>
+				) : (
+					<>
+						<p>Your advert has been successfully edited.</p>
+
+						<div className="mb-3">
+							<Link to={"/advert/" + props.match.params.id}>{title}</Link> - <Link to={"/edit/" + props.match.params.id}>edit</Link>.
+						</div>
+
+						<p>
+							Go to <Link to="/adverts">adverts</Link> or <Link to="/post">post a new advert</Link>!
+						</p>
+					</>
+				)}
 			</MainLayout>
 		</>
 	);

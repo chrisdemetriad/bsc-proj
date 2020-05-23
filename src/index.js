@@ -14,6 +14,7 @@ const base = css`
 	display: flex;
 	flex-direction: column;
 `;
+
 ReactDOM.render(
 	<React.StrictMode>
 		<main css={base}>

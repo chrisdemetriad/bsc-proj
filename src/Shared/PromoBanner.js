@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, css, Global, ClassNames } from "@emotion/core";
 import { Link } from "react-router-dom";
-import React from "react";
 
 const container = css`
 	display: flex;
@@ -38,7 +37,7 @@ const PromoBanner = () => {
 		<div css={container}>
 			<h1>Buy and sell within seconds</h1>
 			<p>List them all with us and sell them for free. No fees, full control over your items, and privacy.</p>
-			<Link className="btn btn-success" to="/login">
+			<Link className="btn btn-success p-3" to="/login">
 				Post now
 			</Link>
 		</div>

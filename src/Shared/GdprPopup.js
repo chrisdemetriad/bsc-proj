@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 /** @jsx jsx */
 import { jsx, css, Global, ClassNames } from "@emotion/core";
 import { Link } from "react-router-dom";
+import { BaseContext } from "./../Shared/BaseContext";
 
 const gdprContainer = css`
 	position: absolute;
@@ -14,30 +15,30 @@ const gdprContainer = css`
 	border-radius: 2px;
 `;
 
-const GdprPopup = () => {
-	const [accept, setAccept] = useState(false);
+// const acceptGdpr = () => {
+// 	setAccepted(true);
+// };
 
-	const clickHandler = () => {
-		setAccept(true);
-	};
+const GdprPopup = () => {
+	const [accepted, setAccepted] = useContext(BaseContext);
 
 	return (
 		<React.Fragment>
-			{!accept && (
-				<React.Fragment>
+			<React.Fragment>
+				{!accepted && (
 					<div css={gdprContainer}>
 						<p>We use cookies in order to improve your experience on our website, analyse our website's traffic and understand where our audience is coming from. </p>
 						<p>
 							To find out more about our policies, or to opt-out, please check our <Link to="cookies">Cookie Policy</Link>. Also, check our <Link to="privacy-policy">Privacy Policy</Link> for more information.
 						</p>
 						<div className="text-right">
-							<button className="btn btn-outline-primary" onClick={clickHandler}>
+							<button className="btn btn-outline-primary" onClick={() => setAccepted((s) => !s)}>
 								OK
 							</button>
 						</div>
 					</div>
-				</React.Fragment>
-			)}
+				)}
+			</React.Fragment>
 		</React.Fragment>
 	);
 };

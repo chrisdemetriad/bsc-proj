@@ -54,8 +54,6 @@ const Listing = (props) => {
 			) : (
 				<p>No data</p>
 			)}
-
-			<GdprPopup />
 		</MainLayout>
 	);
 };

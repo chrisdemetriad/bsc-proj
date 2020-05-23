@@ -111,8 +111,6 @@ const MyAdverts = (props) => {
 					</p>
 				</React.Fragment>
 			)}
-
-			<GdprPopup />
 		</MainLayout>
 	);
 };

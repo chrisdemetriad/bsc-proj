@@ -1,7 +1,7 @@
 import React, { useContext, createContext, useState } from "react";
 /** @jsx jsx */
 import { jsx, css, Global, ClassNames } from "@emotion/core";
-import { BaseContext } from "./../Shared/BaseContext";
+import { BaseProvider, BaseContext } from "./../Shared/BaseContext";
 
 import Header from "./../Shared/Header";
 import Footer from "./../Shared/Footer/Footer";
@@ -39,20 +39,29 @@ const MainLayout = (props) => {
 		border-radius: 2px;
 	`;
 
-	const [accepted, setAccepted] = useContext(BaseContext);
-	console.log(accepted);
+	const baseContext = useContext(BaseContext);
+	const [accepted, setAccepted] = React.useState(baseContext);
+
 	return (
-		<div css={container}>
-			<div className="container" css={mainContainer}>
-				{props.children}
-			</div>
-			<div css={footerContainer}>
-				<div className="container">
-					<Footer />
+		<BaseProvider>
+			<div css={container}>
+				<div css={headerContainer}>
+					<div className="container">
+						<Header />
+					</div>
 				</div>
+				<div className="container" css={mainContainer}>
+					{props.children}
+				</div>
+				<div css={footerContainer}>
+					<div className="container">
+						<Footer />
+					</div>
+				</div>
+
+				<GdprPopup />
 			</div>
-			<GdprPopup />
-		</div>
+		</BaseProvider>
 	);
 };
 

@@ -13,7 +13,6 @@ const Home = () => {
 	return (
 		<BaseProvider>
 			<MainLayout>
-				<Header />
 				<PromoBanner />
 				<InfoBanner />
 				{currentUser && <Redirect to="/adverts" />}

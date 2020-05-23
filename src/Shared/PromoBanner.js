@@ -12,7 +12,7 @@ const container = css`
 	align-items: center;
 	min-height: 400px;
 	color: white;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	background: rgb(34, 193, 195);
 	background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(198, 63, 186, 1) 25%, rgba(76, 93, 201, 1) 67%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 

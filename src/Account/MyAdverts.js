@@ -104,7 +104,12 @@ const MyAdverts = (props) => {
 					</tbody>
 				</table>
 			) : (
-				<p>No data</p>
+				<React.Fragment>
+					<p>You do not seem to have posted any adverts yet.</p>
+					<p>
+						Why don't you <Link to="/post">post one now</Link>?
+					</p>
+				</React.Fragment>
 			)}
 
 			<GdprPopup />

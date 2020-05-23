@@ -18,8 +18,8 @@ const Ad = lazy(() => import("./Ad/Ad"));
 const Post = lazy(() => import("./Post"));
 const Success = lazy(() => import("./success"));
 
-const CookiePolicy = lazy(() => import("./Footer/CookiePolicy"));
-const PrivacyPolicy = lazy(() => import("./Footer/PrivacyPolicy"));
+const CookiePolicy = lazy(() => import("./Shared/Footer/CookiePolicy"));
+const PrivacyPolicy = lazy(() => import("./Shared/Footer/PrivacyPolicy"));
 
 function App() {
 	return (

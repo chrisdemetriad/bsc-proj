@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
 import { Redirect } from "react-router-dom";
 import Header from "./Shared/Header";
+import PromoBanner from "./Shared/PromoBanner";
 
 const base = css`
 	align-items: center;
@@ -18,11 +19,9 @@ const Home = () => {
 		<React.Fragment>
 			<div css={base} className="container">
 				<Header />
-				<div className="">
-					<h1 className="text1">Welcome to Whatever</h1>
+				<PromoBanner />
 
-					{currentUser && <Redirect to="/adverts" />}
-				</div>
+				{currentUser && <Redirect to="/adverts" />}
 			</div>
 		</React.Fragment>
 	);

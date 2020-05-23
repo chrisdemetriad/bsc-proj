@@ -3,6 +3,7 @@ import React from "react";
 import { jsx, css, Global, ClassNames } from "@emotion/core";
 
 import Header from "./../Shared/Header";
+import Footer from "./../Shared/Footer/Footer";
 
 const MainLayout = (props) => {
 	const base = css`
@@ -16,6 +17,11 @@ const MainLayout = (props) => {
 		margin-bottom: 15px;
 	`;
 
+	const footerContainer = css`
+		background: aliceblue;
+		margin-top: 15px;
+	`;
+
 	return (
 		<React.Fragment>
 			<div css={headerContainer}>
@@ -25,6 +31,11 @@ const MainLayout = (props) => {
 			</div>
 			<div className="container" css={base}>
 				{props.children}
+			</div>
+			<div css={footerContainer}>
+				<div className="container">
+					<Footer />
+				</div>
 			</div>
 		</React.Fragment>
 	);

@@ -9,6 +9,10 @@ import GdprPopup from "./../Shared/GdprPopup";
 const MainLayout = (props) => {
 	const container = css`
 		position: relative;
+		h1,
+		h2 {
+			margin-bottom: 20px;
+		}
 	`;
 
 	const mainContainer = css`

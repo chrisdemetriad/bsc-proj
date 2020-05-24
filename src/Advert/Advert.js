@@ -10,7 +10,8 @@ import { AiOutlineEye, AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
 import "firebase/firestore";
 import "firebase/storage";
 
-import MainLayout from "./../Shared/MainLayout";
+import MainLayout from "../Shared/MainLayout";
+import CategoriesBanner from "../Shared/CategoriesBanner";
 
 const Advert = (props) => {
 	const [advert, setAdvert] = useReducer((state, newState) => ({ ...state, ...newState }), {
@@ -104,7 +105,7 @@ const Advert = (props) => {
 
 			<div className="row" css={row}>
 				<div className="col-7">
-					<div className="p-4">
+					<div className="">
 						{advert.file.length > 0 ? (
 							advert.file.map((item, index) => {
 								// @todo only showing one photo for now
@@ -121,7 +122,7 @@ const Advert = (props) => {
 					</div>
 				</div>
 				<div className="col-5 position-relative">
-					<div css={advertInfo} className="p-4 d-flex">
+					<div css={advertInfo} className="d-flex">
 						<div className="clearfix">
 							<button
 								className="btn btn-outline-primary"
@@ -145,20 +146,19 @@ const Advert = (props) => {
 							<div className="w-100 mb-5"></div>
 							<div className="description">{advert.description}</div>
 						</div>
-
-						{/* <p> {advert.category} </p> */}
 						<span>
 							{advert.city}
 							{advert.postcode && ", " + advert.postcode}
 						</span>
 					</div>
 
-					<a href="#" className="position-absolute top-0 right-0">
+					{/* <a href="#" className="position-absolute top-0 right-0">
 						Report
-					</a>
+					</a> */}
 				</div>
 				{/* <div className="w-100 mb-2"></div> */}
 			</div>
+			<CategoriesBanner />
 		</MainLayout>
 	);
 };

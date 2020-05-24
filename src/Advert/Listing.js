@@ -4,10 +4,11 @@ import { jsx, css, Global, ClassNames } from "@emotion/core";
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import { GdprPopup } from "./../Shared/GdprPopup";
+import { GdprPopup } from "../Shared/GdprPopup";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
-import MainLayout from "./../Shared/MainLayout";
+import MainLayout from "../Shared/MainLayout";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const Listing = (props) => {
 	const [advert, setAdvert] = useState([]);
@@ -15,6 +16,12 @@ const Listing = (props) => {
 	useEffect(() => {
 		getData();
 	}, []);
+
+	// const [toggle, setToggle] = React.useState(localStorage.getItem("love") === "true");
+
+	// useEffect(() => {
+	// 	localStorage.setItem("love", toggle);
+	// }, [toggle]);
 
 	async function getData() {
 		const snapshot = await firebase.firestore().collection("adverts").get();
@@ -39,6 +46,9 @@ const Listing = (props) => {
 		transition: box-shadow 0.2s;
 		:hover {
 			box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.15);
+			svg {
+				color: black;
+			}
 		}
 	`;
 	const details = css`
@@ -72,6 +82,14 @@ const Listing = (props) => {
 		}
 	`;
 
+	const heart = css`
+		font-size: 2rem;
+		float: right;
+		color: #888;
+		transition: color 0.2s;
+		cursor: pointer;
+	`;
+
 	return (
 		<MainLayout>
 			<h2>Listing</h2>
@@ -95,6 +113,15 @@ const Listing = (props) => {
 								<div>No images</div>
 							)}
 							<div css={details}>
+								{/* <button
+									onClick={() => {
+										setToggle(!toggle);
+									}}
+								>
+									Toggle
+								</button>
+								{toggle ? <p>I'm toggled</p> : null} */}
+
 								<p css={title}>
 									<Link to={"/advert/" + ad.docId}>{ad.title}</Link>
 								</p>
@@ -102,8 +129,9 @@ const Listing = (props) => {
 									{ad.city}
 									{ad.postcode && ", " + ad.postcode}
 								</p>
-								<div>
-									<p css={price}>£{ad.price}</p>
+								<div className="clearfix">
+									<span css={price}>£{ad.price}</span>
+									<AiOutlineHeart css={heart} />
 								</div>
 							</div>
 						</div>

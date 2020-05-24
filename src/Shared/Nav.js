@@ -78,6 +78,17 @@ const Nav = () => {
 							return;
 						case "/login":
 							return;
+						case "/advert/":
+							return (
+								<React.Fragment>
+									<NavLink activeClassName="active" to="/post" className="btn btn-primary">
+										<IoIosAdd /> Post advert
+									</NavLink>
+									<NavLink activeClassName="active" to="/account">
+										<AiOutlineUser /> My account
+									</NavLink>
+								</React.Fragment>
+							);
 						case "/adverts":
 							return (
 								<React.Fragment>
@@ -86,17 +97,6 @@ const Nav = () => {
 									</NavLink>
 									<NavLink activeClassName="active" to="/account">
 										<FiUser /> My account
-									</NavLink>
-								</React.Fragment>
-							);
-						case "/advert":
-							return (
-								<React.Fragment>
-									<NavLink activeClassName="active" to="/post" className="btn btn-primary">
-										<IoIosAdd /> Post advert
-									</NavLink>
-									<NavLink activeClassName="active" to="/account">
-										<AiOutlineUser /> My account
 									</NavLink>
 								</React.Fragment>
 							);

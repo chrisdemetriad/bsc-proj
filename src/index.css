@@ -28,6 +28,10 @@ html,
 	height: 100%;
 }
 
+svg {
+	margin-top: -3px;
+}
+
 main {
 	max-height: 100%;
 	overflow-y: auto;

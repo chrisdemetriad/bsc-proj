@@ -14,8 +14,8 @@ const MyAdverts = lazy(() => import("./Account/MyAdverts"));
 const Login = lazy(() => import("./Auth/Login"));
 const Signup = lazy(() => import("./Auth/Signup"));
 
-const Listing = lazy(() => import("./Ad/Listing"));
-const Ad = lazy(() => import("./Ad/Ad"));
+const Listing = lazy(() => import("./Advert/Listing"));
+const Advert = lazy(() => import("./Advert/Advert"));
 
 const Post = lazy(() => import("./Post"));
 const Success = lazy(() => import("./success"));
@@ -31,7 +31,7 @@ function App() {
 					<BrowserRouter>
 						<Switch>
 							<PrivateRoute exact path="/adverts" component={Listing} />
-							<PrivateRoute exact path="/advert/:id" component={Ad} />
+							<PrivateRoute exact path="/advert/:id" component={Advert} />
 							<PrivateRoute exact path="/post" component={Post} />
 							<PrivateRoute exact path="/edit/:id" component={Post} />
 							<PrivateRoute exact path="/success/:id/:status" component={Success} />

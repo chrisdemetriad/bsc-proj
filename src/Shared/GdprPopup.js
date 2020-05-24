@@ -15,13 +15,12 @@ const gdprContainer = css`
 	border-radius: 2px;
 `;
 
-// const acceptGdpr = () => {
-// 	setAccepted(true);
-// };
-
 const GdprPopup = () => {
 	const [accepted, setAccepted] = useContext(BaseContext);
 
+	const acceptGdpr = () => {
+		setAccepted((x) => !x);
+	};
 	return (
 		<React.Fragment>
 			<React.Fragment>
@@ -32,7 +31,7 @@ const GdprPopup = () => {
 							To find out more about our policies, or to opt-out, please check our <Link to="cookies">Cookie Policy</Link>. Also, check our <Link to="privacy-policy">Privacy Policy</Link> for more information.
 						</p>
 						<div className="text-right">
-							<button className="btn btn-outline-primary" onClick={() => setAccepted((s) => !s)}>
+							<button className="btn btn-outline-primary" onClick={acceptGdpr}>
 								OK
 							</button>
 						</div>

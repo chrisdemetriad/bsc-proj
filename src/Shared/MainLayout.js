@@ -1,7 +1,7 @@
-import React, { useContext, createContext, useState } from "react";
+import React from "react";
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
-import { BaseProvider, BaseContext } from "./../Shared/BaseContext";
+import { jsx, css } from "@emotion/core";
+import { BaseProvider } from "./../Shared/BaseContext";
 
 import Header from "./../Shared/Header";
 import Footer from "./../Shared/Footer/Footer";
@@ -27,20 +27,6 @@ const MainLayout = (props) => {
 		background: aliceblue;
 		margin-top: 15px;
 	`;
-
-	const gdprContainer = css`
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		background: greenyellow;
-		padding: 20px;
-		width: 300px;
-		font-size: 14px;
-		border-radius: 2px;
-	`;
-
-	const baseContext = useContext(BaseContext);
-	const [accepted, setAccepted] = React.useState(baseContext);
 
 	return (
 		<BaseProvider>

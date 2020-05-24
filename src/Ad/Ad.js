@@ -107,10 +107,11 @@ const Advert = (props) => {
 					<div className="p-4">
 						{advert.file.length > 0 ? (
 							advert.file.map((item, index) => {
+								// @todo only showing one photo for now
+								if (index == 1) return;
 								return (
 									<div css={imageHolder} key={index}>
 										<img src={item.url} />
-										<br />
 									</div>
 								);
 							})

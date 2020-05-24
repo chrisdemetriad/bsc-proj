@@ -8,11 +8,12 @@ const gdprContainer = css`
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	background: greenyellow;
+	background: white;
 	padding: 20px;
-	width: 300px;
+	width: 360px;
 	font-size: 14px;
-	border-radius: 2px;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 13px 0px;
+	border-radius: 10px 0px 0px 0;
 `;
 
 const GdprPopup = () => {
@@ -26,9 +27,11 @@ const GdprPopup = () => {
 			<React.Fragment>
 				{!accepted && (
 					<div css={gdprContainer}>
-						<p>We use cookies in order to improve your experience on our website, analyse our website's traffic and understand where our audience is coming from. </p>
 						<p>
-							To find out more about our policies, or to opt-out, please check our <Link to="cookies">Cookie Policy</Link>. Also, check our <Link to="privacy-policy">Privacy Policy</Link> for more information.
+							We use cookies for the best experience. By using the site you accept our cookie policy <Link to="cookies">Cookie Policy</Link>.
+						</p>
+						<p>
+							Also, check our <Link to="privacy-policy">Privacy Policy</Link> for more information.
 						</p>
 						<div className="text-right">
 							<button className="btn btn-outline-primary" onClick={acceptGdpr}>

@@ -32,6 +32,8 @@ main {
 	max-height: 100%;
 	overflow-y: auto;
 	background: white;
+	display: flex;
+	flex-direction: column;
 }
 
 img {

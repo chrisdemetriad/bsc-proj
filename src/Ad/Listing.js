@@ -23,9 +23,7 @@ const Listing = (props) => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
 		});
-		console.log("*****");
-		console.log(values);
-		console.log("*****");
+
 		setAdvert(values);
 	}
 
@@ -41,13 +39,13 @@ const Listing = (props) => {
 						{ad.file.length > 0 ? (
 							ad.file.map((item, index) => {
 								return (
-									<td key={index}>
+									<div key={index}>
 										<img src={item.url} width="300" />
-									</td>
+									</div>
 								);
 							})
 						) : (
-							<td>No images</td>
+							<div>No images</div>
 						)}
 					</div>
 				))

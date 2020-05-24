@@ -1,7 +1,6 @@
 import React from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { BaseProvider } from "./../Shared/BaseContext";
 
 import Header from "./../Shared/Header";
 import Footer from "./../Shared/Footer/Footer";
@@ -29,25 +28,23 @@ const MainLayout = (props) => {
 	`;
 
 	return (
-		<BaseProvider>
-			<div css={container}>
-				<div css={headerContainer}>
-					<div className="container">
-						<Header />
-					</div>
+		<div css={container}>
+			<div css={headerContainer}>
+				<div className="container">
+					<Header />
 				</div>
-				<div className="container" css={mainContainer}>
-					{props.children}
-				</div>
-				<div css={footerContainer}>
-					<div className="container">
-						<Footer />
-					</div>
-				</div>
-
-				<GdprPopup />
 			</div>
-		</BaseProvider>
+			<div className="container" css={mainContainer}>
+				{props.children}
+			</div>
+			<div css={footerContainer}>
+				<div className="container">
+					<Footer />
+				</div>
+			</div>
+
+			<GdprPopup />
+		</div>
 	);
 };
 

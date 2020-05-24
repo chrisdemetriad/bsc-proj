@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { AuthProvider } from "./Auth";
+import { BaseProvider } from "./Shared/BaseContext";
+
 import PrivateRoute from "./PrivateRoute";
 
 const Home = lazy(() => import("./Home"));
@@ -24,28 +26,30 @@ const PrivacyPolicy = lazy(() => import("./Shared/Footer/PrivacyPolicy"));
 function App() {
 	return (
 		<AuthProvider>
-			<Suspense fallback={<div>Loading... </div>}>
-				<BrowserRouter>
-					<Switch>
-						<PrivateRoute exact path="/adverts" component={Listing} />
-						<PrivateRoute exact path="/advert/:id" component={Ad} />
-						<PrivateRoute exact path="/post" component={Post} />
-						<PrivateRoute exact path="/edit/:id" component={Post} />
-						<PrivateRoute exact path="/success/:id/:status" component={Success} />
+			<BaseProvider>
+				<Suspense fallback={<div>Loading... </div>}>
+					<BrowserRouter>
+						<Switch>
+							<PrivateRoute exact path="/adverts" component={Listing} />
+							<PrivateRoute exact path="/advert/:id" component={Ad} />
+							<PrivateRoute exact path="/post" component={Post} />
+							<PrivateRoute exact path="/edit/:id" component={Post} />
+							<PrivateRoute exact path="/success/:id/:status" component={Success} />
 
-						<PrivateRoute exact path="/account" component={MyAdverts} />
-						<PrivateRoute exact path="/account/settings" component={Settings} />
+							<PrivateRoute exact path="/account" component={MyAdverts} />
+							<PrivateRoute exact path="/account/settings" component={Settings} />
 
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/signup" component={Signup} />
+							<Route exact path="/login" component={Login} />
+							<Route exact path="/signup" component={Signup} />
 
-						<Route component={CookiePolicy} path="/cookies" />
-						<Route component={PrivacyPolicy} path="/privacy-policy" />
+							<Route component={CookiePolicy} path="/cookies" />
+							<Route component={PrivacyPolicy} path="/privacy-policy" />
 
-						<Route component={Home} path="/" />
-					</Switch>
-				</BrowserRouter>
-			</Suspense>
+							<Route component={Home} path="/" />
+						</Switch>
+					</BrowserRouter>
+				</Suspense>
+			</BaseProvider>
 		</AuthProvider>
 	);
 }

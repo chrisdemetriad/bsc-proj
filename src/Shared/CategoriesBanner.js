@@ -1,13 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { Link } from "react-router-dom";
-import promoImage from "./../promo.jpg";
 
 const container = css`
 	ul {
 		display: flex;
-		justify-content: space-between;
-		padding: 100px 30px;
+		justify-content: space-evenly;
+		padding: 70px 30px;
+		border: 1px solid #ccc;
+		background: aliceblue;
+		margin: 30px 0;
+		color: #666;
+		letter-spacing: -1px;
+		text-transform: uppercase;
+		font-size: 1rem;
 	}
 `;
 

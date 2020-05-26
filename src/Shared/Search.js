@@ -1,6 +1,5 @@
-import React from "react";
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
 const searchInput = css`
 	width: 50%;

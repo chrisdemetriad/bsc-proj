@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
-import React, { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import * as firebase from "firebase/app";
 
 import "firebase/firestore";
@@ -10,8 +10,6 @@ import "firebase/storage";
 import MainLayout from "./Shared/MainLayout";
 
 const Post = (props) => {
-	//console.log(props);
-
 	const ref = firebase.firestore().collection("adverts");
 	const [imageArray, setImageArray] = useState([]);
 	const [categoryArray, setCategoryArray] = useState([]);
@@ -33,7 +31,7 @@ const Post = (props) => {
 	});
 
 	const eventHandler = (name, newValue) => {
-		console.log(newValue);
+		// console.log(newValue);
 		setAdInput({ [name]: newValue });
 	};
 
@@ -46,18 +44,13 @@ const Post = (props) => {
 
 	async function getCategory() {
 		const snapshot = await firebase.firestore().collection("category").get();
-		// const snapshot = await firebase.collection('adverts').get()
 		const values = snapshot.docs.map((doc) => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
 		});
-		// console.log(values);
 		setCategoryArray(values);
 	}
 	async function editPost() {
-		// let res = await firebase.firestore().collection('adverts').doc(props.match.params.id).get()
-		// console.log(res)
-		// console.log("editPost");
 		firebase
 			.firestore()
 			.collection("adverts")
@@ -139,8 +132,6 @@ const Post = (props) => {
 				.doc(props.match.params.id)
 				.update(objectData)
 				.then((docRef) => {
-					// console.log(docRef);
-					// console.log(props.match.params.id);
 					props.history.push("/success/" + props.match.params.id + "/edited");
 				})
 				.catch((error) => {
@@ -150,7 +141,7 @@ const Post = (props) => {
 			ref
 				.add(objectData)
 				.then((docRef) => {
-					console.log(docRef);
+					// console.log(docRef);
 					props.history.push("/success/" + docRef.id + "/added");
 				})
 				.catch((error) => {
@@ -363,21 +354,9 @@ const Post = (props) => {
 							);
 						})}
 				</div>
-				{/* <div className="form-group" css={formGroup}>
-					<input
-						type="file"
-						className="btn btn-outline-primary"
-						onChange={(e) => {
-							fileChangedHandler(e);
-						}}
-						multiple
-					/>
-				</div> */}
-
 				<label css={fileContainer}>
 					Upload images
 					<input
-						type="file"
 						type="file"
 						className="btn btn-outline-primary"
 						onChange={(e) => {
@@ -399,8 +378,7 @@ const Post = (props) => {
 
 export default Post;
 
-{
-	/* <label>Type</label>
+/* <label>Type</label>
 
 				<input
 					name="type"
@@ -411,10 +389,8 @@ export default Post;
 						eventHandler("type", e.target.value);
 					}}
 				></input> */
-}
 
-{
-	/* <select>
+/* <select>
 				<option selected="selected" value="1">
 					Yes
 				</option>
@@ -423,10 +399,8 @@ export default Post;
 			<br />
 			<input name="democheckbox" type="checkbox" value="1" /> Checkbox
 			<br /> */
-}
 
-{
-	/* <div className="form-group">
+/* <div className="form-group">
 					<input
 						name="swap"
 						className="form-control"
@@ -439,10 +413,8 @@ export default Post;
 					/>
 					Keen to swap
 				</div> */
-}
 
-{
-	/* <div className="form-group">
+/* <div className="form-group">
 					<input
 						name="sex"
 						className="form-control"
@@ -467,4 +439,3 @@ export default Post;
 					Female
 					<br />
 				</div> */
-}

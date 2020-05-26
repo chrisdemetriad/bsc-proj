@@ -7,7 +7,7 @@ const Footer = () => {
 	const links = css`
 		margin: 40px 0;
 		li {
-			:first-child {
+			:first-of-type {
 				margin-bottom: 15px;
 				font-weight: bold;
 				text-transform: uppercase;

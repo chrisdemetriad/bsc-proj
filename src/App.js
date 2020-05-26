@@ -18,7 +18,7 @@ const Listing = lazy(() => import("./Advert/Listing"));
 const Advert = lazy(() => import("./Advert/Advert"));
 
 const Post = lazy(() => import("./Post"));
-const Success = lazy(() => import("./success"));
+const Success = lazy(() => import("./Success"));
 
 const CookiePolicy = lazy(() => import("./Shared/Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Shared/Footer/PrivacyPolicy"));

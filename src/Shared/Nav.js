@@ -14,7 +14,7 @@ const Nav = () => {
 	let path = location.pathname;
 
 	const { currentUser } = useContext(AuthContext);
-	console.log(path);
+	// console.log(path);
 
 	const routesContainer = css`
 		> a {

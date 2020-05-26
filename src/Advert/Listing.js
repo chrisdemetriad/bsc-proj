@@ -1,10 +1,9 @@
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import { GdprPopup } from "../Shared/GdprPopup";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
@@ -59,7 +58,7 @@ const Listing = (props) => {
 		font-size: 15px;
 		font-weight: bold;
 	`;
-	const desc = css``;
+
 	const price = css`
 		font-size: 20px;
 		font-weight: bold;
@@ -100,14 +99,17 @@ const Listing = (props) => {
 							{ad.file.length > 0 ? (
 								ad.file.map((item, index) => {
 									// @todo only showing one photo for now
-									if (index == 1) return;
-									return (
-										<Link to={"/advert/" + ad.docId}>
-											<div key={index} css={image}>
-												{<img src={item.url} />}
-											</div>
-										</Link>
-									);
+									if (index === 1) {
+										return;
+									} else {
+										return (
+											<Link to={"/advert/" + ad.docId} key={ad.docId}>
+												<div key={index} css={image}>
+													{<img src={item.url} alt={ad.title} />}
+												</div>
+											</Link>
+										);
+									}
 								})
 							) : (
 								<div>No images</div>

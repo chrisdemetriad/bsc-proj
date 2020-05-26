@@ -9,9 +9,9 @@ const Success = (props) => {
 	const [newEntry, setNewEntry] = useState(true);
 
 	useEffect(() => {
-		if (props.match.params.status == "edited") {
+		if (props.match.params.status === "edited") {
 			setNewEntry(false);
-		} else if (props.match.params.status == "added") {
+		} else if (props.match.params.status === "added") {
 			setNewEntry(true);
 		}
 		if (props.match.params.id) {

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 import { Link } from "react-router-dom";
 import { BaseContext } from "./../Shared/BaseContext";
 

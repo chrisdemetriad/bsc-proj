@@ -1,11 +1,9 @@
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
-import React, { useCallback, useContext, useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
-// import {dummyAds}  from "../Shared/Data/dummyAds";
+import { useEffect, useReducer, useState } from "react";
 import * as firebase from "firebase/app";
-import { AiOutlineEye, AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
+import { AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
 
 import "firebase/firestore";
 import "firebase/storage";
@@ -43,7 +41,6 @@ const Advert = (props) => {
 	async function EditPost() {
 		// let res = await firebase.firestore().collection('adverts').doc(props.match.params.id).get()
 		// console.log(res)
-		console.log("editPost");
 		firebase
 			.firestore()
 			.collection("adverts")
@@ -78,9 +75,10 @@ const Advert = (props) => {
 	}
 
 	const row = css`
+		border: 11px solid #eee;
 		> [class*="col-"] > div {
 			background: white;
-			border-radius: 2px;
+
 			height: 100%;
 		}
 	`;
@@ -97,24 +95,28 @@ const Advert = (props) => {
 	const advertInfo = css`
 		flex-direction: column;
 		justify-content: space-between;
+		padding: 20px;
 	`;
 
 	return (
 		<MainLayout>
 			<h1>{advert.title}</h1>
 
-			<div className="row" css={row}>
+			<div className="row no-gutters" css={row}>
 				<div className="col-7">
 					<div className="">
 						{advert.file.length > 0 ? (
 							advert.file.map((item, index) => {
 								// @todo only showing one photo for now
-								if (index == 1) return;
-								return (
-									<div css={imageHolder} key={index}>
-										<img src={item.url} />
-									</div>
-								);
+								if (index === 1) {
+									return;
+								} else {
+									return (
+										<div css={imageHolder} key={index}>
+											<img src={item.url} />
+										</div>
+									);
+								}
 							})
 						) : (
 							<label>No images</label>

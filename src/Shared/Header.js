@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
 import React from "react";
 import { Link } from "react-router-dom";

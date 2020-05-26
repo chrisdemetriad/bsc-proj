@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
 import { Redirect } from "react-router-dom";
-import Header from "./Shared/Header";
 import PromoBanner from "./Shared/PromoBanner";
 import InfoBanner from "./Shared/InfoBanner";
 import MainLayout from "./Shared/MainLayout";

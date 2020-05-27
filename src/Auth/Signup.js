@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-import React, { useCallback } from "react";
-import { withRouter, Link } from "react-router-dom";
+import React, { useCallback, useContext } from "react";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import app from "./../.base";
+import { AuthContext } from "../Auth";
 
 const Signup = ({ history }) => {
 	const handleSignUp = useCallback(
@@ -19,6 +20,12 @@ const Signup = ({ history }) => {
 		},
 		[history]
 	);
+
+	const { currentUser } = useContext(AuthContext);
+
+	if (currentUser) {
+		return <Redirect to="/" />;
+	}
 
 	const base = css`
 		display: flex;

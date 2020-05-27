@@ -261,7 +261,7 @@ const Post = (props) => {
 						/>
 					</div>
 					<div className="form-group col-md-6" css={formGroup}>
-						<label>Post Code</label>
+						<label>Postcode</label>
 
 						<input
 							name="postcode"

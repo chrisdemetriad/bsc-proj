@@ -9,7 +9,7 @@ import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
-const MyAdverts = (props) => {
+const MyFavourites = (props) => {
 	const [user] = useState(firebase.auth().currentUser.email);
 	const [advert, setAdvert] = useState([]);
 
@@ -25,21 +25,6 @@ const MyAdverts = (props) => {
 		});
 
 		setAdvert(values);
-	}
-
-	async function deleteAdvert(id) {
-		firebase
-			.firestore()
-			.collection("adverts")
-			.doc(id)
-			.delete()
-			.then(() => {
-				console.log("Document successfully deleted!");
-				getData();
-			})
-			.catch((error) => {
-				console.error("Error removing document: ", error);
-			});
 	}
 
 	const listing = css`
@@ -59,12 +44,6 @@ const MyAdverts = (props) => {
 			}
 		}
 	`;
-	const actions = css`
-		border-top: 6px solid indianred;
-		padding: 1rem;
-		display: flex;
-		justify-content: space-between;
-	`;
 	const title = css`
 		text-align: center;
 		padding: 1rem;
@@ -76,7 +55,7 @@ const MyAdverts = (props) => {
 		height: 200px;
 		align-items: center;
 		justify-content: center;
-
+		border-bottom: 6px solid indianred;
 		background: rgb(34, 193, 195);
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 		img {
@@ -86,7 +65,7 @@ const MyAdverts = (props) => {
 
 	return (
 		<MainLayout>
-			<h2>My adverts</h2>
+			<h2>My favourites</h2>
 			<div className="row no-gutters d-flex justify-content-between">
 				{advert.length > 0 ? (
 					advert.map((ad) => (
@@ -114,19 +93,6 @@ const MyAdverts = (props) => {
 							) : (
 								<div>No images</div>
 							)}
-							<div css={actions}>
-								<Link
-									onClick={() => {
-										deleteAdvert(ad.docId);
-									}}
-									title="Delete advert"
-								>
-									<AiOutlineDelete />
-								</Link>
-								<Link to={"/edit/" + ad.docId} data="edit" title="Edit advert" className="text-danger">
-									<AiOutlineEdit />
-								</Link>
-							</div>
 						</div>
 					))
 				) : (
@@ -142,4 +108,4 @@ const MyAdverts = (props) => {
 	);
 };
 
-export default MyAdverts;
+export default MyFavourites;

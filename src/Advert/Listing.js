@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "./../Auth";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
@@ -11,6 +12,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 const Listing = (props) => {
 	const [advert, setAdvert] = useState([]);
+	const { currentUser } = useContext(AuthContext);
+
+	let location = useLocation();
+	let path = location.pathname;
+	console.log(path);
 
 	useEffect(() => {
 		getData();
@@ -91,7 +97,7 @@ const Listing = (props) => {
 
 	return (
 		<MainLayout>
-			<h2>Listing</h2>
+			<h2>Adverts</h2>
 			{advert && advert.length > 0 ? (
 				<div className="row no-gutters d-flex justify-content-between">
 					{advert.map((ad) => (
@@ -133,7 +139,7 @@ const Listing = (props) => {
 								</p>
 								<div className="clearfix">
 									<span css={price}>£{ad.price}</span>
-									<AiOutlineHeart css={heart} />
+									{currentUser && <AiOutlineHeart css={heart} />}
 								</div>
 							</div>
 						</div>

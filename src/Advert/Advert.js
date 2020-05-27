@@ -53,7 +53,7 @@ const Advert = (props) => {
 					handleChangeForAdInput("postcode", documentData.postcode);
 					handleChangeForAdInput("category", documentData.category);
 					handleChangeForAdInput("description", documentData.description);
-					handleChangeForAdInput("type", documentData.type);
+					handleChangeForAdInput("post", documentData.post);
 					handleChangeForAdInput("price", documentData.price);
 					handleChangeForAdInput("title", documentData.title);
 					handleChangeForAdInput("phone", documentData.phone);
@@ -150,7 +150,7 @@ const Advert = (props) => {
 						</div>
 						<span>
 							{advert.city}
-							{advert.postcode && ", " + advert.postcode}
+							{advert.postcode && ", " + advert.postcode} {advert.post == 2 && <small>(collection only)</small>} {advert.post == 1 && <small>(will also post)</small>}
 						</span>
 					</div>
 

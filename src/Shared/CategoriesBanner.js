@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { Link } from "react-router-dom";
 
 const container = css`
 	ul {
@@ -20,12 +21,21 @@ const CategoriesBanner = () => {
 	return (
 		<div css={container}>
 			<ul className="list-unstyled">
-				<li>Cars & Vechicles</li>
-				<li>Property</li>
-				<li>Services</li>
-				<li>Jobs</li>
-				<li>Community</li>
-				<li>Pets</li>
+				<li>
+					<Link to="/adverts/clothes">Clothes</Link>
+				</li>
+				<li>
+					<Link to="/adverts/electronics">Electronics</Link>
+				</li>
+				<li>
+					<Link to="/adverts/vehicles">Vehicles</Link>
+				</li>
+				<li>
+					<Link to="/adverts/toys">Toys</Link>
+				</li>
+				<li>
+					<Link to="/adverts/books">Books</Link>
+				</li>
 			</ul>
 		</div>
 	);

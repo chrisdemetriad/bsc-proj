@@ -117,6 +117,7 @@ const MyAdverts = (props) => {
 							<div css={actions}>
 								<Link
 									onClick={() => {
+										alert("Are you sure?");
 										deleteAdvert(ad.docId);
 									}}
 									title="Delete advert"

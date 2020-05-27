@@ -7,8 +7,6 @@ const container = css`
 		display: flex;
 		justify-content: space-evenly;
 		padding: 70px 30px;
-		border: 1px solid #ccc;
-		background: aliceblue;
 		margin: 30px 0;
 		color: #666;
 		letter-spacing: -1px;

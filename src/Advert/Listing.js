@@ -16,7 +16,9 @@ const Listing = (props) => {
 
 	let location = useLocation();
 	let path = location.pathname;
-	console.log(path);
+	let splitPath = path.split("/");
+	let category = splitPath.pop() || splitPath.pop();
+	let catName = category.charAt(0).toUpperCase() + category.slice(1);
 
 	useEffect(() => {
 		getData();
@@ -29,8 +31,12 @@ const Listing = (props) => {
 	// }, [toggle]);
 
 	async function getData() {
-		const snapshot = await firebase.firestore().collection("adverts").get();
-		// const snapshot = await firebase.collection('adverts').get()
+		if (catName != "Adverts") {
+			var snapshot = await firebase.firestore().collection("adverts").where("category", "==", catName).get();
+		} else {
+			var snapshot = await firebase.firestore().collection("adverts").get();
+		}
+
 		const values = snapshot.docs.map((doc) => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
@@ -148,7 +154,9 @@ const Listing = (props) => {
 					))}
 				</div>
 			) : (
-				<p>No data</p>
+				<p>
+					No data in <code>{category}</code>.
+				</p>
 			)}
 		</MainLayout>
 	);

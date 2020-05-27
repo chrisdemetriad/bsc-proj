@@ -88,7 +88,7 @@ const Advert = (props) => {
 		background: rgb(34, 193, 195);
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 		img {
-			max-height: 400px;
+			max-height: 430px;
 		}
 	`;
 

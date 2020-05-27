@@ -7,6 +7,7 @@ import { BaseProvider } from "./Shared/BaseContext";
 import PrivateRoute from "./PrivateRoute";
 
 const Home = lazy(() => import("./Home"));
+const NoMatch = lazy(() => import("./NoMatch"));
 
 const MyFavourites = lazy(() => import("./Account/MyFavourites"));
 const MyAdverts = lazy(() => import("./Account/MyAdverts"));
@@ -33,6 +34,7 @@ function App() {
 							{/* I want a loop that will spit these routes out. Not hardcoded, but a LOOP, please.
 							As for the component, we can use the same Listing component. The URLs should be:
 							*/}
+
 							<Route exact component={Listing} path="/adverts/clothes" />
 							<Route exact component={Listing} path="/adverts/electronics" />
 							<Route exact component={Listing} path="/adverts/vehicles" />
@@ -53,7 +55,12 @@ function App() {
 							<Route exact path="/signup" component={Signup} />
 							<Route component={CookiePolicy} path="/cookies" />
 							<Route component={PrivacyPolicy} path="/privacy-policy" />
-							<Route component={Home} path="/" />
+
+							<Route component={Home} exact path="/" />
+
+							<Route>
+								<NoMatch />
+							</Route>
 						</Switch>
 					</BrowserRouter>
 				</Suspense>

@@ -81,6 +81,9 @@ const Login = ({ history }) => {
 							Log in
 						</button>
 					</form>
+					<small>
+						Don't have account? Simply <Link to="/signup">sign up</Link> now.
+					</small>
 				</div>
 			</div>
 		</React.Fragment>

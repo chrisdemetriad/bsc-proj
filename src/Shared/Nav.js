@@ -2,12 +2,12 @@
 import { css, jsx } from "@emotion/core";
 
 import React, { useContext } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import app from "../.base";
 import { AiOutlineLogout, AiOutlineLogin, AiOutlineUserAdd, AiOutlineUser } from "react-icons/ai";
 import { IoIosAdd } from "react-icons/io";
-import { FiUser, FiSettings, FiList } from "react-icons/fi";
+import { AiOutlineHeart, AiOutlineSolution, AiOutlineUnorderedList } from "react-icons/ai";
 
 const Nav = () => {
 	let location = useLocation();
@@ -29,23 +29,23 @@ const Nav = () => {
 						case "/account/myadverts":
 							return (
 								<React.Fragment>
-									<NavLink activeClassName="active" to="/adverts">
-										<FiList /> Adverts
-									</NavLink>
-									<NavLink activeClassName="active" to="/account/favourites">
-										<FiSettings /> My favourites
-									</NavLink>
+									<Link to="/adverts">
+										<AiOutlineUnorderedList /> Adverts
+									</Link>
+									<Link to="/account/favourites">
+										<AiOutlineHeart /> My favourites
+									</Link>
 								</React.Fragment>
 							);
 						case "/account/favourites":
 							return (
 								<React.Fragment>
-									<NavLink activeClassName="active" to="/adverts">
-										<FiList /> Adverts
-									</NavLink>
-									<NavLink activeClassName="active" to="/account/myadverts">
-										<AiOutlineUser /> My adverts
-									</NavLink>
+									<Link to="/adverts">
+										<AiOutlineUnorderedList /> Adverts
+									</Link>
+									<Link to="/account/myadverts">
+										<AiOutlineSolution /> My adverts
+									</Link>
 								</React.Fragment>
 							);
 						case "/":
@@ -53,22 +53,22 @@ const Nav = () => {
 								<React.Fragment>
 									{!currentUser && (
 										<React.Fragment>
-											<NavLink activeClassName="active" to="/signup">
+											<Link to="/signup">
 												<AiOutlineUserAdd /> Sign up
-											</NavLink>
-											<NavLink activeClassName="active" to="/login">
+											</Link>
+											<Link to="/login">
 												<AiOutlineLogin /> Log in
-											</NavLink>
+											</Link>
 										</React.Fragment>
 									)}
 									{currentUser && (
 										<React.Fragment>
-											<NavLink activeClassName="active" to="/post" className="btn btn-primary">
+											<Link to="/post" className="btn btn-primary">
 												<IoIosAdd /> Post advert
-											</NavLink>
-											<NavLink activeClassName="active" to="/account/myadverts">
-												<AiOutlineUser /> My adverts
-											</NavLink>
+											</Link>
+											<Link to="/account/myadverts">
+												<AiOutlineSolution /> My adverts
+											</Link>
 										</React.Fragment>
 									)}
 								</React.Fragment>
@@ -80,23 +80,17 @@ const Nav = () => {
 						case "/advert/":
 							return (
 								<React.Fragment>
-									<NavLink activeClassName="active" to="/post" className="btn btn-primary">
-										<IoIosAdd /> Post advert
-									</NavLink>
-									<NavLink activeClassName="active" to="/account/myadverts">
-										<AiOutlineUser /> My adverts
-									</NavLink>
+									<Link to="/account/myadverts">
+										<AiOutlineSolution /> My adverts
+									</Link>
 								</React.Fragment>
 							);
 						case "/adverts":
 							return (
 								<React.Fragment>
-									<NavLink activeClassName="active" to="/post" className="btn btn-primary">
-										<IoIosAdd /> Post advert
-									</NavLink>
-									<NavLink activeClassName="active" to="/account/myadverts">
-										<AiOutlineUser /> My adverts
-									</NavLink>
+									<Link to="/account/myadverts">
+										<AiOutlineSolution /> My adverts
+									</Link>
 								</React.Fragment>
 							);
 						default:
@@ -105,9 +99,14 @@ const Nav = () => {
 				})()}
 
 				{currentUser && (
-					<NavLink activeClassName="active" to="/" title="Sign out" onClick={() => app.auth().signOut()}>
-						<AiOutlineLogout /> Sign out
-					</NavLink>
+					<React.Fragment>
+						<Link to="/" title="Sign out" onClick={() => app.auth().signOut()}>
+							<AiOutlineLogout /> Sign out
+						</Link>
+						<Link to="/post" className="btn btn-primary">
+							<IoIosAdd /> Post advert
+						</Link>
+					</React.Fragment>
 				)}
 			</div>
 		</React.Fragment>

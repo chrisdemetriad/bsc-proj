@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
 const MyFavourites = (props) => {
 	const [user] = useState(firebase.auth().currentUser.email);

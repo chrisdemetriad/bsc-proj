@@ -3,13 +3,16 @@ import { jsx, css } from "@emotion/core";
 
 import { useCallback, useEffect, useReducer, useState } from "react";
 import * as firebase from "firebase/app";
+import { useHistory } from "react-router-dom";
 
 import "firebase/firestore";
 import "firebase/storage";
 
 import MainLayout from "./Shared/MainLayout";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Post = (props) => {
+	let history = useHistory();
 	const ref = firebase.firestore().collection("adverts");
 	const [imageArray, setImageArray] = useState([]);
 	const [categoryArray, setCategoryArray] = useState([]);
@@ -205,6 +208,11 @@ const Post = (props) => {
 
 	return (
 		<MainLayout>
+			<div className="text-right">
+				<button className="btn btn-sm btn-outline-primary " onClick={() => history.goBack()}>
+					<IoIosArrowBack /> Back
+				</button>
+			</div>
 			<form onSubmit={handleSubmit}>
 				<div className="form-group" css={formGroup}>
 					<label>Title</label>

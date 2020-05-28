@@ -129,15 +129,6 @@ const Listing = (props) => {
 								<div>No images</div>
 							)}
 							<div css={details}>
-								{/* <button
-									onClick={() => {
-										setToggle(!toggle);
-									}}
-								>
-									Toggle
-								</button>
-								{toggle ? <p>I'm toggled</p> : null} */}
-
 								<p css={title}>
 									<Link to={"/advert/" + ad.docId}>{ad.title}</Link>
 								</p>
@@ -147,7 +138,14 @@ const Listing = (props) => {
 								</p>
 								<div className="clearfix">
 									<span css={price}>£{ad.price}</span>
-									{currentUser && <AiOutlineHeart css={heart} />}
+									{currentUser && (
+										<AiOutlineHeart
+											onClick={() => {
+												console.log("firebase call and toggle value");
+											}}
+											css={heart}
+										/>
+									)}
 								</div>
 							</div>
 						</div>

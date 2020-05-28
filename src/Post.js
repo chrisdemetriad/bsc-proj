@@ -290,7 +290,6 @@ const Post = (props) => {
 							name="price"
 							className="form-control"
 							type="price"
-							placeholder="Price"
 							value={adInput.price}
 							onChange={(e) => {
 								eventHandler("price", e.target.value);
@@ -345,7 +344,6 @@ const Post = (props) => {
 						cols="30"
 						rows="3"
 						name="description"
-						placeholder="Description"
 						value={adInput.description}
 						onChange={(e) => {
 							eventHandler("description", e.target.value);
@@ -391,7 +389,6 @@ export default Post;
 				<input
 					name="type"
 					type="text"
-					placeholder="Type"
 					value={adInput.type}
 					onChange={(e) => {
 						eventHandler("type", e.target.value);

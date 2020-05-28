@@ -31,18 +31,11 @@ function App() {
 				<Suspense fallback={<div>Loading... </div>}>
 					<BrowserRouter>
 						<Switch>
-							{/* I want a loop that will spit these routes out. Not hardcoded, but a LOOP, please.
-							As for the component, we can use the same Listing component. The URLs should be:
-							*/}
-
 							<Route exact component={Listing} path="/adverts/clothes" />
 							<Route exact component={Listing} path="/adverts/electronics" />
 							<Route exact component={Listing} path="/adverts/vehicles" />
 							<Route exact component={Listing} path="/adverts/toys" />
 							<Route exact component={Listing} path="/adverts/books" />
-							{/* I want a loop that will spit these routes out. Not hardcoded, but a LOOP, please.
-							As for the component, we can use the same Listing component. The URLs should be:
-							*/}
 
 							<Route exact path="/adverts" component={Listing} />
 							<Route exact path="/advert/:id" component={Advert} />

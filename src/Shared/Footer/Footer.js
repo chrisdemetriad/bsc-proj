@@ -5,10 +5,11 @@ import { jsx, css } from "@emotion/core";
 
 const Footer = () => {
 	const links = css`
-		margin: 40px 0;
+		margin: 80px 0;
 		li {
+			margin-bottom: 10px;
 			:first-of-type {
-				margin-bottom: 15px;
+				margin-bottom: 20px;
 				font-weight: bold;
 				text-transform: uppercase;
 			}

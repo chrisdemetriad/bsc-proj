@@ -21,6 +21,8 @@ const Advert = lazy(() => import("./Advert/Advert"));
 const Post = lazy(() => import("./Post"));
 const Success = lazy(() => import("./Success"));
 
+const SearchListing = lazy(() => import("./SearchListings"));
+
 const CookiePolicy = lazy(() => import("./Shared/Footer/CookiePolicy"));
 const PrivacyPolicy = lazy(() => import("./Shared/Footer/PrivacyPolicy"));
 
@@ -46,6 +48,7 @@ function App() {
 							<PrivateRoute exact path="/account/favourites" component={MyFavourites} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/signup" component={Signup} />
+							<Route exact path="/search/:data" component={SearchListing} />
 							<Route component={CookiePolicy} path="/cookies" />
 							<Route component={PrivacyPolicy} path="/privacy-policy" />
 

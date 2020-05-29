@@ -2,15 +2,15 @@
 import { jsx, css } from "@emotion/core";
 
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "./../Auth";
+import { AuthContext } from "./Auth";
 
 import { Link, useLocation } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
-import MainLayout from "../Shared/MainLayout";
+import MainLayout from "./Shared/MainLayout";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const Listing = (props) => {
+const SearchListing = (props) => {
 	const [advert, setAdvert] = useState([]);
 	const { currentUser } = useContext(AuthContext);
 
@@ -30,20 +30,44 @@ const Listing = (props) => {
 	// 	localStorage.setItem("love", toggle);
 	// }, [toggle]);
 
-	async function getData() {
-		if (catName != "Adverts") {
-			var snapshot = await firebase.firestore().collection("adverts").where("category", "==", catName).get();
-		} else {
-			var snapshot = await firebase.firestore().collection("adverts").get();
-		}
+	// async function getData() {
+	// 	if (catName != "Adverts") {
+	// 		var snapshot = await firebase.firestore().collection("adverts").where("category", "==", catName).get();
+	// 	} else {
+	// 		var snapshot = await firebase.firestore().collection("adverts").get();
+	// 	}
 
-		const values = snapshot.docs.map((doc) => {
-			const data = doc.data();
-			return { docId: doc.id, ...data };
+	// 	const values = snapshot.docs.map((doc) => {
+	// 		const data = doc.data();
+	// 		return { docId: doc.id, ...data };
+	// 	});
+
+	// 	setAdvert(values);
+	// }
+
+	const getData = async () => {
+		let searchTerm = props.match.params.data;
+		var searchTermLength = searchTerm.length;
+		var searchTermFront = searchTerm.slice(0, searchTermLength - 1);
+		var searchTermBack = searchTerm.slice(searchTermLength - 1, searchTerm.length);
+
+		var start = searchTerm;
+		var end = searchTermFront + String.fromCharCode(searchTermBack.charCodeAt(0) + 1);
+
+		const db = firebase.firestore();
+
+		// https: stackoverflow.com/questions/46573804/firestore-query-documents-startswith-a-string
+		const data = await db.collection("adverts").where("title", ">=", start).where("title", "<", end).get();
+
+		const values = data.docs.map((doc) => {
+			const returnedData = doc.data();
+			return { docId: doc.id, ...returnedData };
 		});
-
 		setAdvert(values);
-	}
+
+		// console.log("search term is: " + searchTerm);
+		// console.log("returned data is: ", values);
+	};
 
 	const listing = css`
 		flex: 0 0 24%;
@@ -103,6 +127,15 @@ const Listing = (props) => {
 		cursor: pointer;
 	`;
 
+	const noImage = css`
+		min-height: 200px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 14px;
+		text-transform: uppercase;
+	`;
+
 	return (
 		<MainLayout>
 			<h2>Adverts</h2>
@@ -126,7 +159,7 @@ const Listing = (props) => {
 									}
 								})
 							) : (
-								<div>No images</div>
+								<div css={noImage}>No images</div>
 							)}
 							<div css={details}>
 								{/* <button
@@ -162,4 +195,4 @@ const Listing = (props) => {
 	);
 };
 
-export default Listing;
+export default SearchListing;

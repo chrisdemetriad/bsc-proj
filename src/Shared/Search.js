@@ -1,11 +1,16 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as firebase from "firebase/app";
+import { AiOutlineSearch } from "react-icons/ai";
+import { Redirect } from "react-router-dom";
 
-const Search = () => {
+const Search = (props) => {
 	const [searchItem, setSearchItem] = useState([]);
+	const [searchData, setSearchData] = useState();
+
+	let history = useHistory();
 
 	const getData = async (searchTerm) => {
 		var searchTermLength = searchTerm.length;
@@ -24,7 +29,6 @@ const Search = () => {
 			const returnedData = doc.data();
 			return { docId: doc.id, ...returnedData };
 		});
-
 		setSearchItem(values);
 
 		// console.log("search term is: " + searchTerm);
@@ -32,16 +36,13 @@ const Search = () => {
 	};
 
 	const searchHandler = (searchTerm) => {
+		setSearchData(searchTerm);
 		getData(searchTerm);
 	};
 
 	const container = css`
 		position: relative;
 	`;
-
-	// const searchInput = css`
-	// 	width: 50%;
-	// `;
 
 	const results = css`
 		width: 100%;
@@ -62,27 +63,49 @@ const Search = () => {
 		}
 	`;
 
+	const searchIcon = css`
+		position: absolute;
+		right: 10px;
+		top: 11px;
+		color: #999;
+		font-size: 22px;
+	`;
+
+	const submitInput = css`
+		display: none;
+	`;
+
+	const handleSearch = (e) => {
+		e.preventDefault();
+
+		history.push("/search/" + searchData);
+	};
+
 	return (
 		<React.Fragment>
 			<div css={container}>
-				<input
-					// css={searchInput}
-					onChange={(e) => {
-						searchHandler(e.target.value);
-					}}
-					className="form-control"
-					type="text"
-					placeholder="What are you looking for.."
-				/>
-				{searchItem && searchItem.length > 0 && (
-					<ul css={results}>
-						{searchItem.map((s) => (
-							<li key={s.docId}>
-								<Link to={"/advert/" + s.docId}>{s.title}</Link>
-							</li>
-						))}
-					</ul>
-				)}
+				<form onSubmit={handleSearch}>
+					<AiOutlineSearch css={searchIcon} />
+
+					<input
+						onChange={(e) => {
+							searchHandler(e.target.value);
+						}}
+						className="form-control"
+						type="text"
+						placeholder="What are you looking for.."
+					/>
+					<input type="submit" value="Submit" css={submitInput} />
+					{searchItem && searchItem.length > 0 && (
+						<ul css={results}>
+							{searchItem.map((s) => (
+								<li key={s.docId}>
+									<Link to={"/advert/" + s.docId}>{s.title}</Link>
+								</li>
+							))}
+						</ul>
+					)}
+				</form>
 			</div>
 		</React.Fragment>
 	);

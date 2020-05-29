@@ -19,7 +19,6 @@ const Post = (props) => {
 	const [user, setUser] = useState(firebase.auth().currentUser.email);
 	const [adInput, setAdInput] = useReducer((state, newState) => ({ ...state, ...newState }), {
 		title: "",
-		title_s: "",
 		email: "",
 		phone: "",
 		city: "",
@@ -64,7 +63,6 @@ const Post = (props) => {
 				if (docRef.exists) {
 					let documentData = docRef.data();
 					eventHandler("title", documentData.title);
-					eventHandler("title_s", documentData.title.toLowerCase());
 					eventHandler("email", documentData.email);
 					eventHandler("phone", documentData.phone);
 					eventHandler("city", documentData.city);
@@ -225,7 +223,6 @@ const Post = (props) => {
 						value={adInput.title}
 						onChange={(e) => {
 							eventHandler("title", e.target.value);
-							eventHandler("title_s", e.target.value);
 						}}
 					/>
 				</div>

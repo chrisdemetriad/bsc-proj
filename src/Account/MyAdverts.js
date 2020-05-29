@@ -76,12 +76,21 @@ const MyAdverts = (props) => {
 		height: 200px;
 		align-items: center;
 		justify-content: center;
-
 		background: rgb(34, 193, 195);
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 		img {
-			max-height: 200px;
+			height: 100%;
+			width: auto;
 		}
+	`;
+
+	const noImage = css`
+		min-height: 200px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 14px;
+		text-transform: uppercase;
 	`;
 
 	return (
@@ -112,7 +121,7 @@ const MyAdverts = (props) => {
 									}
 								})
 							) : (
-								<div>No images</div>
+								<div css={noImage}>No images</div>
 							)}
 							<div css={actions}>
 								<Link

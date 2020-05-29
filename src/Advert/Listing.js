@@ -20,6 +20,29 @@ const Listing = (props) => {
 	let category = splitPath.pop() || splitPath.pop();
 	let catName = category.charAt(0).toUpperCase() + category.slice(1);
 
+	async function setFavorite(ad) {
+		console.log(ad);
+		if (ad.isFavorite) {
+			ad["isFavorite"] = false;
+		} else {
+			ad["isFavorite"] = true;
+		}
+
+		firebase
+			.firestore()
+			.collection("adverts")
+			.doc(ad.docId)
+			.update(ad)
+			.then((docRef) => {
+				// props.history.push("/success/" + props.match.params.id + "/edited");
+				console.log("set Favorite");
+				getData();
+			})
+			.catch((error) => {
+				console.error("Error adding document: ", error);
+			});
+	}
+
 	useEffect(() => {
 		getData();
 	}, []);
@@ -41,7 +64,7 @@ const Listing = (props) => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
 		});
-
+		console.log(values);
 		setAdvert(values);
 	}
 
@@ -85,7 +108,6 @@ const Listing = (props) => {
 		height: 200px;
 		align-items: center;
 		justify-content: center;
-		border-radius: 2px 2px 0px 0px;
 		background: rgb(34, 193, 195);
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 		img {
@@ -95,10 +117,27 @@ const Listing = (props) => {
 		}
 	`;
 
+	const noImage = css`
+		min-height: 200px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 14px;
+		text-transform: uppercase;
+	`;
+
 	const heart = css`
 		font-size: 2rem;
 		float: right;
 		color: #888;
+		transition: color 0.2s;
+		cursor: pointer;
+	`;
+
+	const heartSelected = css`
+		font-size: 2rem;
+		float: right;
+		color: #e34d4d;
 		transition: color 0.2s;
 		cursor: pointer;
 	`;
@@ -126,7 +165,7 @@ const Listing = (props) => {
 									}
 								})
 							) : (
-								<div>No images</div>
+								<div css={noImage}>No images</div>
 							)}
 							<div css={details}>
 								<p css={title}>
@@ -141,9 +180,10 @@ const Listing = (props) => {
 									{currentUser && (
 										<AiOutlineHeart
 											onClick={() => {
-												console.log("firebase call and toggle value");
+												setFavorite(ad);
+												// console.log("firebase call and toggle value");
 											}}
-											css={heart}
+											css={ad.isFavorite ? heartSelected : heart}
 										/>
 									)}
 								</div>

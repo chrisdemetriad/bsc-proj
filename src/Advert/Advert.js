@@ -92,6 +92,15 @@ const Advert = (props) => {
 		}
 	`;
 
+	const noImage = css`
+		min-height: 200px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 14px;
+		text-transform: uppercase;
+	`;
+
 	const advertInfo = css`
 		flex-direction: column;
 		justify-content: space-between;
@@ -119,7 +128,7 @@ const Advert = (props) => {
 								}
 							})
 						) : (
-							<label>No images</label>
+							<div css={noImage}>No images</div>
 						)}
 					</div>
 				</div>

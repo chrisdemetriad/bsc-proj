@@ -14,16 +14,15 @@ const Search = (props) => {
 
 	const getData = async (searchTerm) => {
 		var searchTermLength = searchTerm.length;
-		var searchTermFront = searchTerm.slice(0, searchTermLength - 1);
+		var searchTermFront = searchTerm.slice(0, searchTermLength - 1).toLowerCase();
 		var searchTermBack = searchTerm.slice(searchTermLength - 1, searchTerm.length);
 
-		var start = searchTerm;
-		var end = searchTermFront + String.fromCharCode(searchTermBack.charCodeAt(0) + 1);
+		var start = searchTerm.toLowerCase();
+		var end = searchTermFront + String.fromCharCode(searchTermBack.charCodeAt(0) + 1).toLowerCase();
 
 		const db = firebase.firestore();
 
-		// https: stackoverflow.com/questions/46573804/firestore-query-documents-startswith-a-string
-		const data = await db.collection("adverts").where("title", ">=", start).where("title", "<", end).get();
+		const data = await db.collection("adverts").where("title_s", ">=", start).where("title_s", "<", end).get();
 
 		const values = data.docs.map((doc) => {
 			const returnedData = doc.data();
@@ -76,8 +75,7 @@ const Search = (props) => {
 	`;
 
 	const handleSearch = (e) => {
-		e.preventDefault();
-
+		// e.preventDefault();
 		history.push("/search/" + searchData);
 	};
 

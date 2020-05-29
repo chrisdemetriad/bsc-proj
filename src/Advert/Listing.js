@@ -8,11 +8,13 @@ import { Link, useLocation } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const Listing = (props) => {
 	const [advert, setAdvert] = useState([]);
+	const [favouriteList, setFavouriteList] = useState({ productId: [] });
 	const { currentUser } = useContext(AuthContext);
+	const ref = firebase.firestore().collection("favorite");
 
 	let location = useLocation();
 	let path = location.pathname;
@@ -20,32 +22,68 @@ const Listing = (props) => {
 	let category = splitPath.pop() || splitPath.pop();
 	let catName = category.charAt(0).toUpperCase() + category.slice(1);
 
-	async function setFavorite(ad) {
-		console.log(ad);
-		if (ad.isFavorite) {
-			ad["isFavorite"] = false;
-		} else {
-			ad["isFavorite"] = true;
+	async function getFavourite() {
+		if (firebase.auth().currentUser) {
+			firebase
+				.firestore()
+				.collection("favorite")
+				.doc(firebase.auth().currentUser.email)
+				.get()
+				.then(async (docRef) => {
+					if (docRef.data()) {
+						setFavouriteList(docRef.data());
+					} else {
+						setFavouriteList({ productId: [] });
+					}
+				})
+				.catch((error) => {
+					console.error("Error adding document: ", error);
+				});
 		}
-
-		firebase
-			.firestore()
-			.collection("adverts")
-			.doc(ad.docId)
-			.update(ad)
-			.then((docRef) => {
-				// props.history.push("/success/" + props.match.params.id + "/edited");
-				console.log("set Favorite");
-				getData();
-			})
-			.catch((error) => {
-				console.error("Error adding document: ", error);
-			});
+	}
+	async function setFavourite(ad) {
+		let list = favouriteList;
+		if (firebase.auth().currentUser) {
+			if (favouriteList.productId.length > 0) {
+				if (favouriteList.productId.indexOf(ad.docId) > -1) {
+					list.productId.splice(favouriteList.productId.indexOf(ad.docId), 1);
+				} else {
+					list["productId"] = [...favouriteList.productId, ad.docId];
+				}
+				setFavouriteList({ productId: [] });
+				firebase
+					.firestore()
+					.collection("favorite")
+					.doc(firebase.auth().currentUser.email)
+					.update(list)
+					.then((docRef) => {
+						setFavouriteList(list);
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+					});
+			} else {
+				let favData = { productId: [ad.docId] };
+				ref
+					.doc(firebase.auth().currentUser.email)
+					.set(favData)
+					.then((docRef) => {
+						setFavouriteList(favData);
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+					});
+			}
+		}
 	}
 
 	useEffect(() => {
-		getData();
+		getFavourite();
 	}, []);
+
+	useEffect(() => {
+		getData();
+	}, [favouriteList]);
 
 	// const [toggle, setToggle] = React.useState(localStorage.getItem("love") === "true");
 
@@ -64,7 +102,6 @@ const Listing = (props) => {
 			const data = doc.data();
 			return { docId: doc.id, ...data };
 		});
-		console.log(values);
 		setAdvert(values);
 	}
 
@@ -177,15 +214,23 @@ const Listing = (props) => {
 								</p>
 								<div className="clearfix">
 									<span css={price}>£{ad.price}</span>
-									{currentUser && (
-										<AiOutlineHeart
-											onClick={() => {
-												setFavorite(ad);
-												// console.log("firebase call and toggle value");
-											}}
-											css={ad.isFavorite ? heartSelected : heart}
-										/>
-									)}
+									{currentUser &&
+										favouriteList &&
+										(favouriteList.productId.indexOf(ad.docId) > -1 ? (
+											<AiFillHeart
+												onClick={() => {
+													setFavourite(ad);
+												}}
+												css={heartSelected}
+											/>
+										) : (
+											<AiOutlineHeart
+												onClick={() => {
+													setFavourite(ad);
+												}}
+												css={heart}
+											/>
+										))}
 								</div>
 							</div>
 						</div>

@@ -99,7 +99,7 @@ const MyAdverts = (props) => {
 			<div className="row no-gutters d-flex justify-content-between">
 				{advert.length > 0 ? (
 					advert.map((ad) => (
-						<div classNames="col-md-3" key={ad.docId} css={listing}>
+						<div className="col-md-3" key={ad.docId} css={listing}>
 							<div css={title}>
 								<Link to={"/advert/" + ad.docId}>
 									{ad.title} - {ad.price}
@@ -125,6 +125,7 @@ const MyAdverts = (props) => {
 							)}
 							<div css={actions}>
 								<Link
+									to="#"
 									onClick={() => {
 										alert("Are you sure?");
 										deleteAdvert(ad.docId);

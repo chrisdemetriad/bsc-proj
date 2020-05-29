@@ -127,6 +127,7 @@ const Post = (props) => {
 		}
 		let arrayFile = { file: uploadedImages, user: user };
 		let objectData = { ...adInput, ...arrayFile };
+		objectData['title_s'] = objectData.title.toLowerCase() 
 		// console.log(objectData);
 		if (props.match.params.id) {
 			firebase

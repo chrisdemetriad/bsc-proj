@@ -8,11 +8,13 @@ import { Link, useLocation } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "./Shared/MainLayout";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const SearchListing = (props) => {
 	const [advert, setAdvert] = useState([]);
 	const { currentUser } = useContext(AuthContext);
+	const [favoriteList, setFavoriteList] = useState([]);
+	const ref = firebase.firestore().collection("favorite");
 
 	let location = useLocation();
 	let path = location.pathname;
@@ -20,30 +22,71 @@ const SearchListing = (props) => {
 	let category = splitPath.pop() || splitPath.pop();
 	let catName = category.charAt(0).toUpperCase() + category.slice(1);
 
+	async function getFavourite() {
+		if (firebase.auth().currentUser) {
+			firebase
+				.firestore()
+				.collection("favorite")
+				.doc(firebase.auth().currentUser.email)
+				.get()
+				.then(async (docRef) => {
+					// console.log(docRef.data().productId)
+					if (docRef.data()) {
+						setFavoriteList(docRef.data());
+					} else {
+						setFavoriteList({ productId: [] });
+					}
+				})
+				.catch((error) => {
+					console.error("Error adding document: ", error);
+				});
+		}
+	}
+	async function setFavourite(ad) {
+		let list = favoriteList;
+
+		if (firebase.auth().currentUser) {
+			if (favoriteList.productId.length > 0) {
+				if (favoriteList.productId.indexOf(ad.docId) > -1) {
+					list.productId.splice(favoriteList.productId.indexOf(ad.docId), 1);
+				} else {
+					list["productId"] = [...favoriteList.productId, ad.docId];
+				}
+				setFavoriteList({ productId: [] });
+				firebase
+					.firestore()
+					.collection("favorite")
+					.doc(firebase.auth().currentUser.email)
+					.update(list)
+					.then((docRef) => {
+						setFavoriteList(list);
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+					});
+			} else {
+				let favData = { productId: [ad.docId] };
+
+				ref
+					.doc(firebase.auth().currentUser.email)
+					.set(favData)
+					.then((docRef) => {
+						setFavoriteList(favData);
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+					});
+			}
+		}
+	}
+
 	useEffect(() => {
-		getData();
+		getFavourite();
 	}, []);
 
-	// const [toggle, setToggle] = React.useState(localStorage.getItem("love") === "true");
-
-	// useEffect(() => {
-	// 	localStorage.setItem("love", toggle);
-	// }, [toggle]);
-
-	// async function getData() {
-	// 	if (catName != "Adverts") {
-	// 		var snapshot = await firebase.firestore().collection("adverts").where("category", "==", catName).get();
-	// 	} else {
-	// 		var snapshot = await firebase.firestore().collection("adverts").get();
-	// 	}
-
-	// 	const values = snapshot.docs.map((doc) => {
-	// 		const data = doc.data();
-	// 		return { docId: doc.id, ...data };
-	// 	});
-
-	// 	setAdvert(values);
-	// }
+	useEffect(() => {
+		getData();
+	}, [favoriteList]);
 
 	const getData = async () => {
 		let searchTerm = props.match.params.data;
@@ -51,18 +94,18 @@ const SearchListing = (props) => {
 		var searchTermFront = searchTerm.slice(0, searchTermLength - 1);
 		var searchTermBack = searchTerm.slice(searchTermLength - 1, searchTerm.length);
 
-		var start = searchTerm;
-		var end = searchTermFront + String.fromCharCode(searchTermBack.charCodeAt(0) + 1);
+		var start = searchTerm.toLowerCase();
+		var end = searchTermFront + String.fromCharCode(searchTermBack.charCodeAt(0) + 1).toLowerCase();
 
 		const db = firebase.firestore();
 
-		// https: stackoverflow.com/questions/46573804/firestore-query-documents-startswith-a-string
-		const data = await db.collection("adverts").where("title", ">=", start).where("title", "<", end).get();
+		const data = await db.collection("adverts").where("title_s", ">=", start).where("title_s", "<", end).get();
 
 		const values = data.docs.map((doc) => {
 			const returnedData = doc.data();
 			return { docId: doc.id, ...returnedData };
 		});
+
 		setAdvert(values);
 
 		// console.log("search term is: " + searchTerm);
@@ -127,6 +170,14 @@ const SearchListing = (props) => {
 		cursor: pointer;
 	`;
 
+	const heartSelected = css`
+		font-size: 2rem;
+		float: right;
+		color: #e34d4d;
+		transition: color 0.2s;
+		cursor: pointer;
+	`;
+
 	const noImage = css`
 		min-height: 200px;
 		display: flex;
@@ -162,15 +213,6 @@ const SearchListing = (props) => {
 								<div css={noImage}>No images</div>
 							)}
 							<div css={details}>
-								{/* <button
-									onClick={() => {
-										setToggle(!toggle);
-									}}
-								>
-									Toggle
-								</button>
-								{toggle ? <p>I'm toggled</p> : null} */}
-
 								<p css={title}>
 									<Link to={"/advert/" + ad.docId}>{ad.title}</Link>
 								</p>
@@ -180,7 +222,23 @@ const SearchListing = (props) => {
 								</p>
 								<div className="clearfix">
 									<span css={price}>£{ad.price}</span>
-									{currentUser && <AiOutlineHeart css={heart} />}
+									{currentUser &&
+										favoriteList &&
+										(favoriteList.productId && favoriteList.productId.indexOf(ad.docId) > -1 ? (
+											<AiFillHeart
+												onClick={() => {
+													setFavourite(ad);
+												}}
+												css={heartSelected}
+											/>
+										) : (
+											<AiOutlineHeart
+												onClick={() => {
+													setFavourite(ad);
+												}}
+												css={heart}
+											/>
+										))}
 								</div>
 							</div>
 						</div>

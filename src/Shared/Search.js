@@ -3,6 +3,7 @@ import { jsx, css } from "@emotion/core";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as firebase from "firebase/app";
+import "firebase/firestore";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Redirect } from "react-router-dom";
 

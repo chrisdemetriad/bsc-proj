@@ -1,0 +1,2 @@
+(this.webpackJsonpbbk=this.webpackJsonpbbk||[]).push([[16],{73:function(e,n,t){"use strict";t.r(n);var a=t(0),s=t.n(a);n.default=function(){return s.a.createElement("div",null,s.a.createElement("h2",null,"Cookies"))}}}]);
+//# sourceMappingURL=16.e414e759.chunk.js.map

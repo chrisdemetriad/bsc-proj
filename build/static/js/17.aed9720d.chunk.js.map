@@ -1,1 +1,0 @@
-{"version":3,"sources":["Shared/Footer/PrivacyPolicy.js"],"names":["PrivacyPolicy"],"mappings":"4FAAA,2BAUeA,UARO,WACrB,OACC,6BACC","file":"static/js/17.aed9720d.chunk.js","sourcesContent":["import React from \"react\";\n\nconst PrivacyPolicy = () => {\n\treturn (\n\t\t<div>\n\t\t\t<h1>PrivacyPolicy</h1>\n\t\t</div>\n\t);\n};\n\nexport default PrivacyPolicy;\n"],"sourceRoot":""}

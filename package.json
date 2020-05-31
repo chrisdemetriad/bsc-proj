@@ -1,8 +1,8 @@
 {
-	"name": "bsc-proj",
+	"name": "bbk",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "http://chrisdemetriad.github.io/bsc-proj",
+	"homepage": "http://chrisdemetriad.github.io/bbk-proj",
 	"dependencies": {
 		"@emotion/core": "^10.0.28",
 		"@testing-library/jest-dom": "^4.2.4",
@@ -10,7 +10,6 @@
 		"@testing-library/user-event": "^7.2.1",
 		"bootstrap": "^4.4.1",
 		"firebase": "^7.14.2",
-		"gh-pages": "^2.2.0",
 		"node-sass": "^4.14.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
@@ -41,5 +40,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"gh-pages": "^2.2.0"
 	}
 }

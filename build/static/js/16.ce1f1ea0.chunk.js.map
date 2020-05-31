@@ -1,1 +1,0 @@
-{"version":3,"sources":["Shared/Footer/CookiePolicy.js"],"names":["CookiePolicy"],"mappings":"4GAAA,2BAUeA,UARM,WACpB,OACC,6BACC","file":"static/js/16.ce1f1ea0.chunk.js","sourcesContent":["import React from \"react\";\n\nconst CookiePolicy = () => {\n\treturn (\n\t\t<div>\n\t\t\t<h2>Cookies</h2>\n\t\t</div>\n\t);\n};\n\nexport default CookiePolicy;\n"],"sourceRoot":""}

@@ -1,3 +1,4 @@
+/* eslint-disable */
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
@@ -21,10 +22,9 @@ const Listing = (props) => {
 	let splitPath = path.split("/");
 	let category = splitPath.pop() || splitPath.pop();
 	let catName = category.charAt(0).toUpperCase() + category.slice(1);
-	
+
 	async function getFavourite() {
-		
-		return new Promise((resolve)=>{
+		return new Promise((resolve) => {
 			if (currentUser) {
 				firebase
 					.firestore()
@@ -34,31 +34,31 @@ const Listing = (props) => {
 					.then(async (docRef) => {
 						if (docRef.data()) {
 							// setFavouriteList(docRef.data().productId);
-							resolve(docRef.data().productId)
+							resolve(docRef.data().productId);
 						} else {
 							// setFavouriteList([]);
-							resolve([])
+							resolve([]);
 						}
 					})
 					.catch((error) => {
 						console.error("Error adding document: ", error);
 					});
 			}
-		})
+		});
 	}
 	async function setFavourite(ad) {
 		let list = favouriteList;
-		let arr = []
+		let arr = [];
 		if (currentUser) {
 			if (favouriteList.length > 0) {
 				if (favouriteList.indexOf(ad.docId) > -1) {
 					list.splice(favouriteList.indexOf(ad.docId), 1);
-					arr = [...list]
+					arr = [...list];
 				} else {
 					arr = [...favouriteList, ad.docId];
 				}
-				
-				 firebase
+
+				firebase
 					.firestore()
 					.collection("favorite")
 					.doc(currentUser.email)
@@ -84,27 +84,25 @@ const Listing = (props) => {
 		}
 	}
 
-
-	useEffect(()=>{
+	useEffect(() => {
 		// getFavourite();
 		let mounted = true;
-		getFavourite().then((favouriteData)=>{
+		getFavourite().then((favouriteData) => {
 			if (mounted) {
-				setFavouriteList(favouriteData)
+				setFavouriteList(favouriteData);
 			}
 		});
-		return () => mounted = false;
-	},[])
+		return () => (mounted = false);
+	}, []);
 
 	useEffect(() => {
 		let mounted = true;
-		getData().then((adverData)=>{
+		getData().then((adverData) => {
 			if (mounted) {
-				
-				setAdvert(adverData)
+				setAdvert(adverData);
 			}
 		});
-		return () => mounted = false;
+		return () => (mounted = false);
 	}, [favouriteList]);
 
 	// const [toggle, setToggle] = React.useState(localStorage.getItem("love") === "true");
@@ -114,7 +112,7 @@ const Listing = (props) => {
 	// }, [toggle]);
 
 	async function getData() {
-		return new Promise(async(resolve)=>{
+		return new Promise(async (resolve) => {
 			if (catName != "Adverts") {
 				var snapshot = await firebase.firestore().collection("adverts").where("category", "==", catName).get();
 			} else {
@@ -124,10 +122,8 @@ const Listing = (props) => {
 				const data = doc.data();
 				return { docId: doc.id, ...data };
 			});
-			resolve(values)
-		})
-		
-		
+			resolve(values);
+		});
 	}
 
 	const listing = css`

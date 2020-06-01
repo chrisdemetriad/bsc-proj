@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
@@ -36,9 +36,17 @@ const Search = (props) => {
 	};
 
 	const searchHandler = (searchTerm) => {
-		setSearchData(searchTerm);
-		getData(searchTerm);
+		if (searchTerm != undefined) {
+			setSearchData(searchTerm);
+			getData(searchTerm);
+		}
 	};
+
+	useEffect(() => {
+		if (searchData != undefined) {
+			window.location.reload(true);
+		}
+	}, [window.location.pathname]);
 
 	const container = css`
 		position: relative;
@@ -77,34 +85,38 @@ const Search = (props) => {
 
 	const handleSearch = (e) => {
 		// e.preventDefault();
-		history.push("/search/" + searchData);
+		// history.push("/search/" + searchData);
+		if (e.key === "Enter") {
+			history.push("/search/" + searchData);
+		}
 	};
 
 	return (
 		<React.Fragment>
 			<div css={container}>
-				<form onSubmit={handleSearch}>
-					<AiOutlineSearch css={searchIcon} />
+				{/* <form onSubmit={handleSearch}> */}
+				<AiOutlineSearch css={searchIcon} />
 
-					<input
-						onChange={(e) => {
-							searchHandler(e.target.value);
-						}}
-						className="form-control"
-						type="text"
-						placeholder="What are you looking for.."
-					/>
-					<input type="submit" value="Submit" css={submitInput} />
-					{searchItem && searchItem.length > 0 && (
-						<ul css={results}>
-							{searchItem.map((s) => (
-								<li key={s.docId}>
-									<Link to={"/advert/" + s.docId}>{s.title}</Link>
-								</li>
-							))}
-						</ul>
-					)}
-				</form>
+				<input
+					onChange={(e) => {
+						searchHandler(e.target.value);
+					}}
+					onKeyPress={(event) => handleSearch(event)}
+					className="form-control"
+					type="text"
+					placeholder="What are you looking for.."
+				/>
+				<input type="submit" value="Submit" css={submitInput} />
+				{searchItem && searchItem.length > 0 && (
+					<ul css={results}>
+						{searchItem.map((s) => (
+							<li key={s.docId}>
+								<Link to={"/advert/" + s.docId}>{s.title}</Link>
+							</li>
+						))}
+					</ul>
+				)}
+				{/* </form> */}
 			</div>
 		</React.Fragment>
 	);

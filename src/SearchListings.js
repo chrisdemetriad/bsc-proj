@@ -13,7 +13,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 const SearchListing = (props) => {
 	const [advert, setAdvert] = useState([]);
 	const { currentUser } = useContext(AuthContext);
-	const [favoriteList, setFavoriteList] = useState([]);
+	const [favouriteList, setFavouriteList] = useState([]);
 	const ref = firebase.firestore().collection("favorite");
 
 	let location = useLocation();
@@ -23,18 +23,17 @@ const SearchListing = (props) => {
 	let catName = category.charAt(0).toUpperCase() + category.slice(1);
 
 	async function getFavourite() {
-		if (firebase.auth().currentUser) {
+		if (currentUser) {
 			firebase
 				.firestore()
 				.collection("favorite")
-				.doc(firebase.auth().currentUser.email)
+				.doc(currentUser.email)
 				.get()
 				.then(async (docRef) => {
-					// console.log(docRef.data().productId)
 					if (docRef.data()) {
-						setFavoriteList(docRef.data());
+						setFavouriteList(docRef.data().productId);
 					} else {
-						setFavoriteList({ productId: [] });
+						setFavouriteList([]);
 					}
 				})
 				.catch((error) => {
@@ -43,23 +42,23 @@ const SearchListing = (props) => {
 		}
 	}
 	async function setFavourite(ad) {
-		let list = favoriteList;
-
-		if (firebase.auth().currentUser) {
-			if (favoriteList.productId.length > 0) {
-				if (favoriteList.productId.indexOf(ad.docId) > -1) {
-					list.productId.splice(favoriteList.productId.indexOf(ad.docId), 1);
+		let list = favouriteList;
+		let arr = []
+		if (currentUser) {
+			if (favouriteList.length > 0) {
+				if (favouriteList.indexOf(ad.docId) > -1) {
+					list.splice(favouriteList.indexOf(ad.docId), 1);
+					arr = [...list]
 				} else {
-					list["productId"] = [...favoriteList.productId, ad.docId];
+					arr = [...favouriteList, ad.docId];
 				}
-				setFavoriteList({ productId: [] });
 				firebase
 					.firestore()
 					.collection("favorite")
-					.doc(firebase.auth().currentUser.email)
-					.update(list)
+					.doc(currentUser.email)
+					.update({ productId: arr })
 					.then((docRef) => {
-						setFavoriteList(list);
+						setFavouriteList(arr);
 					})
 					.catch((error) => {
 						console.error("Error adding document: ", error);
@@ -68,10 +67,10 @@ const SearchListing = (props) => {
 				let favData = { productId: [ad.docId] };
 
 				ref
-					.doc(firebase.auth().currentUser.email)
+					.doc(currentUser.email)
 					.set(favData)
 					.then((docRef) => {
-						setFavoriteList(favData);
+						setFavouriteList(favData.productId);
 					})
 					.catch((error) => {
 						console.error("Error adding document: ", error);
@@ -80,13 +79,14 @@ const SearchListing = (props) => {
 		}
 	}
 
-	useEffect(() => {
+	useEffect(()=>{
 		getFavourite();
-	}, []);
+	},[currentUser])
 
 	useEffect(() => {
 		getData();
-	}, [favoriteList]);
+
+	}, [favouriteList]);
 
 	const getData = async () => {
 		let searchTerm = props.match.params.data;
@@ -223,8 +223,8 @@ const SearchListing = (props) => {
 								<div className="clearfix">
 									<span css={price}>£{ad.price}</span>
 									{currentUser &&
-										favoriteList &&
-										(favoriteList.productId && favoriteList.productId.indexOf(ad.docId) > -1 ? (
+										favouriteList &&
+										(favouriteList.length > 0 && favouriteList.indexOf(ad.docId) > -1 ? (
 											<AiFillHeart
 												onClick={() => {
 													setFavourite(ad);

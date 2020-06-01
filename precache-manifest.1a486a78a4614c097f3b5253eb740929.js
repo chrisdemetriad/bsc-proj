@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bd27f230da20f90885c26966e81262db",
+    "revision": "88181f7759a90b1829e35ee436187ba2",
     "url": "/bsc-proj/index.html"
   },
   {
-    "revision": "3c9c9c18994be3754610",
+    "revision": "04caac576e70d67cbe93",
     "url": "/bsc-proj/static/css/main.2c770c37.chunk.css"
   },
   {
@@ -20,20 +20,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bsc-proj/static/js/1.2780d20b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9fbce19be03cb8b7300a",
-    "url": "/bsc-proj/static/js/10.9a2b6496.chunk.js"
+    "revision": "8721e0b86fa31d0c8b96",
+    "url": "/bsc-proj/static/js/10.669be41a.chunk.js"
   },
   {
-    "revision": "8735ed84abe72d1d146c",
-    "url": "/bsc-proj/static/js/11.28eb57bf.chunk.js"
+    "revision": "85323720ec7b7dd7df1a",
+    "url": "/bsc-proj/static/js/11.34ebb1ed.chunk.js"
   },
   {
-    "revision": "f8151ff32ae996f7ae52",
-    "url": "/bsc-proj/static/js/12.edfa088b.chunk.js"
+    "revision": "7a3da16113e41cce2198",
+    "url": "/bsc-proj/static/js/12.5078e359.chunk.js"
   },
   {
-    "revision": "fc58a5fbe0728aef1206",
-    "url": "/bsc-proj/static/js/13.a86d81dc.chunk.js"
+    "revision": "8ebf35aedcb97acc7849",
+    "url": "/bsc-proj/static/js/13.bbb7508b.chunk.js"
   },
   {
     "revision": "8b20f3e9c40c0a6b21cc",
@@ -60,32 +60,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bsc-proj/static/js/4.884ecf4d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "30dbf11a836c9f1676de",
-    "url": "/bsc-proj/static/js/5.0bb4f759.chunk.js"
+    "revision": "e707c42af3e00b52fdbf",
+    "url": "/bsc-proj/static/js/5.6a8ea060.chunk.js"
   },
   {
-    "revision": "1a26d90f9e234a5b1cf0",
-    "url": "/bsc-proj/static/js/6.2971c34b.chunk.js"
+    "revision": "24db992814d3ad81b8dd",
+    "url": "/bsc-proj/static/js/6.e9f564f4.chunk.js"
   },
   {
-    "revision": "deb90bfe42aadc87e3f5",
-    "url": "/bsc-proj/static/js/7.42e00af6.chunk.js"
+    "revision": "1f31e264704603cb6dbc",
+    "url": "/bsc-proj/static/js/7.58a4f09c.chunk.js"
   },
   {
-    "revision": "ead273462fb1e75299cc",
-    "url": "/bsc-proj/static/js/8.7dc4840d.chunk.js"
+    "revision": "1a2e6c1c6d227ac81f2c",
+    "url": "/bsc-proj/static/js/8.f98090df.chunk.js"
   },
   {
-    "revision": "190b8bc0e87da376f14e",
-    "url": "/bsc-proj/static/js/9.0c485711.chunk.js"
+    "revision": "03d4e97df163fe780998",
+    "url": "/bsc-proj/static/js/9.01a145e4.chunk.js"
   },
   {
-    "revision": "3c9c9c18994be3754610",
-    "url": "/bsc-proj/static/js/main.cb178f2d.chunk.js"
+    "revision": "04caac576e70d67cbe93",
+    "url": "/bsc-proj/static/js/main.b5c36815.chunk.js"
   },
   {
-    "revision": "baf6584a8174cc07b481",
-    "url": "/bsc-proj/static/js/runtime-main.3df196c4.js"
+    "revision": "acab6aa3cb6ec84b52ed",
+    "url": "/bsc-proj/static/js/runtime-main.5612b5db.js"
   },
   {
     "revision": "fa29ff4d384a2868ba86cc4f897ffe87",

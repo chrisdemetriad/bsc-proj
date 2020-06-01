@@ -32,6 +32,7 @@ const Advert = (props) => {
 		if (props.match.params.id) {
 			EditPost(props.match.params.id);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleChangeForAdInput = (name, newValue) => {
@@ -122,7 +123,7 @@ const Advert = (props) => {
 								} else {
 									return (
 										<div css={imageHolder} key={index}>
-											<img src={item.url} />
+											<img src={item.url} alt={item.title} />
 										</div>
 									);
 								}
@@ -159,7 +160,7 @@ const Advert = (props) => {
 						</div>
 						<span>
 							{advert.city}
-							{advert.postcode && ", " + advert.postcode} {advert.post == 2 && <small>(collection only)</small>} {advert.post == 1 && <small>(will also post)</small>}
+							{advert.postcode && ", " + advert.postcode} {advert.post === 2 && <small>(collection only)</small>} {advert.post === 1 && <small>(will also post)</small>}
 						</span>
 					</div>
 

@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Redirect } from "react-router-dom";
 
 const Search = (props) => {
 	const [searchItem, setSearchItem] = useState([]);
@@ -36,16 +35,17 @@ const Search = (props) => {
 	};
 
 	const searchHandler = (searchTerm) => {
-		if (searchTerm != undefined) {
+		if (searchTerm !== undefined) {
 			setSearchData(searchTerm);
 			getData(searchTerm);
 		}
 	};
 
 	useEffect(() => {
-		if (searchData != undefined) {
+		if (searchData !== undefined) {
 			window.location.reload(true);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [window.location.pathname]);
 
 	const container = css`

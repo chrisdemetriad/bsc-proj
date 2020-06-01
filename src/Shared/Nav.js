@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import app from "../.base";
-import { AiOutlineLogout, AiOutlineLogin, AiOutlineUserAdd, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineLogout, AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 import { IoIosAdd } from "react-icons/io";
 import { AiOutlineHeart, AiOutlineSolution, AiOutlineUnorderedList } from "react-icons/ai";
 

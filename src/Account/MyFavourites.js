@@ -14,6 +14,7 @@ const MyFavourites = (props) => {
 
 	useEffect(() => {
 		getData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	async function getData() {

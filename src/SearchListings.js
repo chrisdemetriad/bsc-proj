@@ -20,7 +20,7 @@ const SearchListing = (props) => {
 	let path = location.pathname;
 	let splitPath = path.split("/");
 	let category = splitPath.pop() || splitPath.pop();
-	let catName = category.charAt(0).toUpperCase() + category.slice(1);
+	// let catName = category.charAt(0).toUpperCase() + category.slice(1);
 
 	async function getFavourite() {
 		if (currentUser) {
@@ -43,12 +43,12 @@ const SearchListing = (props) => {
 	}
 	async function setFavourite(ad) {
 		let list = favouriteList;
-		let arr = []
+		let arr = [];
 		if (currentUser) {
 			if (favouriteList.length > 0) {
 				if (favouriteList.indexOf(ad.docId) > -1) {
 					list.splice(favouriteList.indexOf(ad.docId), 1);
-					arr = [...list]
+					arr = [...list];
 				} else {
 					arr = [...favouriteList, ad.docId];
 				}
@@ -79,13 +79,14 @@ const SearchListing = (props) => {
 		}
 	}
 
-	useEffect(()=>{
+	useEffect(() => {
 		getFavourite();
-	},[currentUser])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentUser]);
 
 	useEffect(() => {
 		getData();
-
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [favouriteList]);
 
 	const getData = async () => {

@@ -16,7 +16,7 @@ const Post = (props) => {
 	const ref = firebase.firestore().collection("adverts");
 	const [imageArray, setImageArray] = useState([]);
 	const [categoryArray, setCategoryArray] = useState([]);
-	const [user, setUser] = useState(firebase.auth().currentUser.email);
+	const [user] = useState(firebase.auth().currentUser.email);
 	const [adInput, setAdInput] = useReducer((state, newState) => ({ ...state, ...newState }), {
 		title: "",
 		email: "",
@@ -43,6 +43,7 @@ const Post = (props) => {
 			editPost(props.match.params.id);
 		}
 		getCategory();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	async function getCategory() {
@@ -122,12 +123,12 @@ const Post = (props) => {
 	}
 
 	function submitData(uploadedImages) {
-		if (adInput.file.length > 0 && uploadedImages.length == 0) {
+		if (adInput.file.length > 0 && uploadedImages.length === 0) {
 			uploadedImages = adInput.file;
 		}
 		let arrayFile = { file: uploadedImages, user: user };
 		let objectData = { ...adInput, ...arrayFile };
-		objectData['title_s'] = objectData.title.toLowerCase() 
+		objectData["title_s"] = objectData.title.toLowerCase();
 		// console.log(objectData);
 		if (props.match.params.id) {
 			firebase
@@ -356,7 +357,7 @@ const Post = (props) => {
 						adInput.file.map((item, index) => {
 							return (
 								<div key={index}>
-									<img src={item.url} width="100" />
+									<img src={item.url} width="100" alt={item.title} />
 								</div>
 							);
 						})}

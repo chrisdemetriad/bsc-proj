@@ -17,6 +17,7 @@ const Success = (props) => {
 		if (props.match.params.id) {
 			EditPost(props.match.params.id);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	async function EditPost() {

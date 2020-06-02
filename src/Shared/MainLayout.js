@@ -26,7 +26,7 @@ const MainLayout = (props) => {
 	`;
 
 	const footerContainer = css`
-		background: aliceblue;
+		box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.18) !important;
 		margin-top: 15px;
 	`;
 

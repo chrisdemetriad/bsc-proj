@@ -30,7 +30,7 @@ function App() {
 	return (
 		<AuthProvider>
 			<BaseProvider>
-				<Suspense fallback={<div>Loading... </div>}>
+				<Suspense fallback={<div className="loading">Loading... </div>}>
 					<BrowserRouter basename="/bsc-proj">
 						<Switch>
 							<Route exact component={Listing} path="/adverts/clothes" />

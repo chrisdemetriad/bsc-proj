@@ -363,19 +363,19 @@ const Post = (props) => {
 							);
 						})}
 				</div>
-				<label css={fileContainer}>
-					Upload images
-					<input
-						type="file"
-						className="btn btn-outline-primary"
-						onChange={(e) => {
-							fileChangedHandler(e);
-						}}
-						multiple
-					/>
-				</label>
 
 				<div className="clearfix">
+					<label css={fileContainer}>
+						Upload images
+						<input
+							type="file"
+							className="btn btn-outline-primary"
+							onChange={(e) => {
+								fileChangedHandler(e);
+							}}
+							multiple
+						/>
+					</label>
 					<button type="submit" className="btn btn-primary float-right w-25">
 						Submit
 					</button>

@@ -53,7 +53,7 @@ const Success = (props) => {
 						</div>
 
 						<p>
-							Go to your <Link to="/account/myadverts">my adverts</Link> or <Link to="/post">post a new advert</Link>!
+							Go to your <Link to="/myadverts">my adverts</Link> or <Link to="/post">post a new advert</Link>!
 						</p>
 					</>
 				) : (

@@ -2,27 +2,27 @@
 
 
 
-## Final Year Project - Type 4
+#### Birkbeck - Final Year Project - Type 4
+## Classifieds web application 
 Cristian Demetriad / cdemet03
 
-## How to run
+### How to start
 
 Navigate to the project directory and run:
 
-### `npm start`
+#### `npm start`
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000/bsc-proj](http://localhost:3000/bsc-proj) to view it in the browser.
 
-### `npm test`
+Pushing the code to master will trigger the `npm run deploy` command, which will first run `npm run build` as per the `package.json` instructions, then deploy the application to [https://chrisdemetriad.github.io/bsc-proj/adverts](https://chrisdemetriad.github.io/bsc-proj/adverts).
 
-Launches the test runner (Jest)<br />
+### Testing/building/deploying standard commands
 
-### `npm run build`
+Builds the application for production to the `build` folder
+###### `npm run build`
 
-Builds the application for production to the `build` folder.<br />
+Launches the test runner (Jest)
+###### `npm test`
 
-## Deployment
-
-### `npm run deploy`
-
-**Deploys the application to https://chrisdemetriad.github.io/bsc-proj**
+**Independent deployment**
+###### `npm run deploy`

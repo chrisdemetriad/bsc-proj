@@ -14,7 +14,7 @@ Navigate to the project directory and run:
 
 Open [http://localhost:3000/bsc-proj](http://localhost:3000/bsc-proj) to view it in the browser.
 
-Pushing the code to master will trigger the `npm run deploy` command, which will first run `npm run build` as per the `package.json` instructions, then deploy the application to [https://chrisdemetriad.github.io/bsc-proj/adverts] (https://chrisdemetriad.github.io/bsc-proj/adverts).
+Pushing the code to master will trigger the `npm run deploy` command, which will first run `npm run build` as per the `package.json` instructions, then deploy the application to [https://chrisdemetriad.github.io/bsc-proj/adverts](https://chrisdemetriad.github.io/bsc-proj/adverts).
 
 ### Testing/building/deploying standard commands
 

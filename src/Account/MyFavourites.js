@@ -8,8 +8,11 @@ import { Link } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
-const MyFavourites = (props) => {
+import { Shorten as short } from "./../Shared/Utils/Shorten";
+
+const MyAdverts = (props) => {
 	const [user] = useState(firebase.auth().currentUser.email);
 	const [advert, setAdvert] = useState([]);
 
@@ -26,6 +29,21 @@ const MyFavourites = (props) => {
 		});
 
 		setAdvert(values);
+	}
+
+	async function deleteAdvert(id) {
+		firebase
+			.firestore()
+			.collection("adverts")
+			.doc(id)
+			.delete()
+			.then(() => {
+				console.log("Document successfully deleted!");
+				getData();
+			})
+			.catch((error) => {
+				console.error("Error removing document: ", error);
+			});
 	}
 
 	const listing = css`
@@ -45,6 +63,12 @@ const MyFavourites = (props) => {
 			}
 		}
 	`;
+	const actions = css`
+		border-top: 6px solid indianred;
+		padding: 1rem;
+		display: flex;
+		justify-content: space-between;
+	`;
 	const title = css`
 		text-align: center;
 		padding: 1rem;
@@ -56,7 +80,6 @@ const MyFavourites = (props) => {
 		height: 200px;
 		align-items: center;
 		justify-content: center;
-		border-bottom: 6px solid indianred;
 		background: rgb(34, 193, 195);
 		background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(169, 62, 136, 1) 0%, rgba(193, 65, 169, 1) 19%, rgba(198, 63, 186, 1) 29%, rgba(109, 85, 197, 1) 74%, rgba(76, 93, 201, 1) 79%, rgba(128, 190, 131, 1) 100%, rgba(45, 168, 253, 1) 100%);
 		img {
@@ -76,14 +99,14 @@ const MyFavourites = (props) => {
 
 	return (
 		<MainLayout>
-			<h2>My favourites</h2>
+			<h2>My adverts</h2>
 			<div className="row no-gutters d-flex justify-content-between">
 				{advert.length > 0 ? (
 					advert.map((ad) => (
 						<div className="col-md-3" key={ad.docId} css={listing}>
 							<div css={title}>
 								<Link to={"/advert/" + ad.docId}>
-									{ad.title} - {ad.price}
+									{short(ad.title, 16)} - {ad.price}
 								</Link>
 							</div>
 							{ad.file.length > 0 ? (
@@ -104,6 +127,21 @@ const MyFavourites = (props) => {
 							) : (
 								<div css={noImage}>No images</div>
 							)}
+							<div css={actions}>
+								<Link
+									to="#"
+									onClick={() => {
+										alert("Are you sure?");
+										deleteAdvert(ad.docId);
+									}}
+									title="Delete advert"
+								>
+									<AiOutlineDelete />
+								</Link>
+								<Link to={"/edit/" + ad.docId} data="edit" title="Edit advert" className="text-danger">
+									<AiOutlineEdit />
+								</Link>
+							</div>
 						</div>
 					))
 				) : (
@@ -119,4 +157,4 @@ const MyFavourites = (props) => {
 	);
 };
 
-export default MyFavourites;
+export default MyAdverts;

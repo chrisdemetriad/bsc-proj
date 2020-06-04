@@ -11,6 +11,8 @@ import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
+import { Shorten as short } from "./../Shared/Utils/Shorten";
+
 const Listing = (props) => {
 	const [advert, setAdvert] = useState([]);
 	const [favouriteList, setFavouriteList] = useState([]);
@@ -227,7 +229,7 @@ const Listing = (props) => {
 							)}
 							<div css={details}>
 								<p css={title}>
-									<Link to={"/advert/" + ad.docId}>{ad.title}</Link>
+									<Link to={"/advert/" + ad.docId}>{short(ad.title, 20)}</Link>
 								</p>
 								<p css={city}>
 									{ad.city}

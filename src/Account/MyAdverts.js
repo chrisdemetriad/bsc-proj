@@ -10,6 +10,8 @@ import "firebase/firestore";
 import MainLayout from "../Shared/MainLayout";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
+import { Shorten as short } from "./../Shared/Utils/Shorten";
+
 const MyAdverts = (props) => {
 	const [user] = useState(firebase.auth().currentUser.email);
 	const [advert, setAdvert] = useState([]);
@@ -104,7 +106,7 @@ const MyAdverts = (props) => {
 						<div className="col-md-3" key={ad.docId} css={listing}>
 							<div css={title}>
 								<Link to={"/advert/" + ad.docId}>
-									{ad.title} - {ad.price}
+									{short(ad.title, 16)} - £{ad.price}
 								</Link>
 							</div>
 							{ad.file.length > 0 ? (

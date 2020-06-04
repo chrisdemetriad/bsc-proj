@@ -114,7 +114,7 @@ const Advert = (props) => {
 			<h1>{advert.title}</h1>
 
 			<div className="row no-gutters" css={row}>
-				<div className="col-7">
+				<div className="col-sm-12 col-md-5 col-7 ">
 					<div className="">
 						{advert.file.length > 0 ? (
 							advert.file.map((item, index) => {
@@ -134,7 +134,7 @@ const Advert = (props) => {
 						)}
 					</div>
 				</div>
-				<div className="col-5 position-relative">
+				<div className="col-sm-12 col-md-7 col-5 position-relative">
 					<div css={advertInfo} className="d-flex">
 						<div className="clearfix">
 							<button

@@ -18,11 +18,21 @@ const MainLayout = (props) => {
 		align-items: center;
 		min-height: 24em;
 		justify-content: center;
+		@media (max-width: 1110px) {
+			max-width: 100%;
+		}
 	`;
 
 	const headerContainer = css`
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18) !important;
 		margin-bottom: 15px;
+		> div {
+			@media (max-width: 1110px) {
+				margin: 0;
+				width: 100%;
+				max-width: 100%;
+			}
+		}
 	`;
 
 	const footerContainer = css`

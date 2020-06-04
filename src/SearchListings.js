@@ -115,10 +115,13 @@ const SearchListing = (props) => {
 	};
 
 	const listing = css`
-		flex: 0 0 24%;
+		@media (min-width: 1110px) {
+			flex: 0 0 24%;
+			max-width: 24%;
+		}
 		border: 1px solid #eee;
 		padding: 0;
-		max-width: 24%;
+
 		margin-bottom: 15px;
 		background: white;
 		border-radius: 0px 0px 2px 2px;

@@ -50,6 +50,9 @@ const Search = (props) => {
 
 	const container = css`
 		position: relative;
+		@media (max-width: 800px) {
+			display: none;
+		}
 	`;
 
 	const results = css`

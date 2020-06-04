@@ -18,6 +18,12 @@ const Nav = () => {
 	const routesContainer = css`
 		> a {
 			margin-left: 30px;
+			@media (max-width: 800px) {
+				margin-left: 3px;
+			}
+			@media (max-width: 600px) {
+				margin-left: 6px;
+			}
 		}
 	`;
 

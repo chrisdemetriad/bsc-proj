@@ -1,2 +1,0 @@
-(this["webpackJsonpbsc-proj"]=this["webpackJsonpbsc-proj"]||[]).push([[17],{74:function(e,n,t){"use strict";t.r(n);var c=t(0),r=t.n(c);n.default=function(){return r.a.createElement("div",null,r.a.createElement("h1",null,"PrivacyPolicy"))}}}]);
-//# sourceMappingURL=17.79233e7d.chunk.js.map
